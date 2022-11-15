@@ -1,0 +1,11 @@
+html {
+    height: 100%;
+}
+
+body {
+    background-image: url("./assets/images/imagen-fondo.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: 80%;
+}

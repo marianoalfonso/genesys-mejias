@@ -1,5 +1,4 @@
 <?php
-    require('./modules/db/dbConnection.php');
 
     echo 'mostrando pagina START.PHP';
 
@@ -9,15 +8,6 @@
     $db = 'mejias';
 
     try {
-        // $sql = "select * from profesionales order by 2";
-        // $conexion_pdo = new PDO("mysql:host=$server; dbname=$db", $user, $pass);
-        // $resultados = $conexion_pdo->prepare($sql);
-        // $resultados->execute();
-        // $datos = $resultados->fetchAll();
-        // foreach ($datos as $row) {
-        //     echo "<br>".$row['prf_nombre'];
-        // }
-    
         $sql = "select * from profesionales order by 2";
         $conexion_pdo = new PDO("mysql:host=$server; dbname=$db", $user, $pass);
         // $resultados = $conexion_pdo->prepare($sql);

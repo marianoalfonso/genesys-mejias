@@ -6,7 +6,7 @@
                 $dbName = 'mejias';
                 $dbUser = 'root';
                 $dbPassword = '';
-                $conn = new PDO('mysql:host=localhost; dbname=mejias', $dbUser, $dbPassword);
+                $conn = new PDO("mysql:host=$host; dbname=$dbName", $dbUser, $dbPassword);
                 return $conn;
             } catch (PDOException $error1) {
                 echo 'no es posible conectarse con la base de datos ('.$error1->getMessage().')';

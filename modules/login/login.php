@@ -7,11 +7,11 @@
 <!------ Include the above in your HEAD tag ---------->
 
     <!-- CSS personalizado --> 
-    <link rel="stylesheet" href="login.css">  
+    <link rel="stylesheet" href="./login.css">  
 
 <body>
     <?php 
-        require('../db/dbConnection.php');
+        require_once('../db/dbConnection.php');
         session_start();
         $_SESSION['action'] = 'login';
     ?>
@@ -22,31 +22,39 @@
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
-                        <form id="login-form" action="../cruds/loginCrud.php" class="form" method="post">
+                        <form id="login-form" action="./loginCrud.php" class="form" method="post">
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group">
                                 <label for="dni" class="text-info">dni</label><br>
-                                <input type="number" name="dni" class="form-control">
+                                <input type="number" name="dni" class="form-control" value="22925061">
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">password</label><br>
-                                <input type="text" name="password" class="form-control">
+                                <input type="password" name="password" class="form-control" value="test1234">
                             </div>
                             <div class="form-group">
                                 <label for="profesional" class="text-info">seleccionar agenda de profesional</label>
                                 <select name="profesional" class="form-control">
                                     <?php
-                                        $resultados = db::conectar()->prepare('select prf_id, prf_nombre from profesionales order by 2;');
-                                        $resultados->execute();
-                                        $datos = $resultados->fetchAll();
-                                        foreach ($datos as $row) {
-                                            echo "<option value = '".$row['prf_id']."'>".$row['prf_nombre']."</option>";
+                                        try {
+                                            $sql = "select prf_id, prf_nombre from profesionales order by 2";
+                                            $p = db::conectar()->prepare($sql);
+                                            $p->execute();
+                                            $datos = $p->fetchAll(PDO::FETCH_ASSOC);
+                                            foreach ($datos as $row) {
+                                                echo "<option value = '".$row['prf_id']."'>".$row['prf_nombre']."</option>";
+                                            }    
+                                        } catch (PDOException $error1) {
+                                            echo "error PDO: ".$error1;
+                                        } catch (exception $error2) {
+                                            echo "error general: ".$error1;
                                         }
+
                                     ?>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <input type="submit" value="ingresar" class="btn btn-warning" name="logIn_button">
+                            <div class="form-group" >
+                                <input type="submit" value="ingresar" class="btn btn-warning col-md-12" name="logIn_button" id="logIn_button">
                             </div>
                         </form>
                     </div>
