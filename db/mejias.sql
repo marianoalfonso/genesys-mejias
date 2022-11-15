@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 07-11-2022 a las 09:27:25
+-- Tiempo de generación: 15-11-2022 a las 02:27:14
 -- Versión del servidor: 8.0.21
 -- Versión de PHP: 7.4.9
 
@@ -47,31 +47,32 @@ INSERT INTO `coberturas` (`id`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `personas`
+-- Estructura de tabla para la tabla `pacientes`
 --
 
-DROP TABLE IF EXISTS `personas`;
-CREATE TABLE IF NOT EXISTS `personas` (
+DROP TABLE IF EXISTS `pacientes`;
+CREATE TABLE IF NOT EXISTS `pacientes` (
   `id` int NOT NULL AUTO_INCREMENT,
   `apellido` varchar(45) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `dni` int NOT NULL,
+  `fec_nac` date NOT NULL,
   `cobertura` tinyint NOT NULL,
   `numero` varchar(45) DEFAULT NULL,
   `telefono` varchar(45) DEFAULT NULL,
   `direccion` varchar(100) DEFAULT NULL,
-  `contacto` text,
+  `profesion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   PRIMARY KEY (`id`),
   UNIQUE KEY `dni_UNIQUE` (`dni`),
   KEY `FK_persona_cobertura_idx` (`cobertura`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Volcado de datos para la tabla `personas`
+-- Volcado de datos para la tabla `pacientes`
 --
 
-INSERT INTO `personas` (`id`, `apellido`, `nombre`, `dni`, `cobertura`, `numero`, `telefono`, `direccion`, `contacto`) VALUES
-(1, 'picapiedras', 'pedro', 42333432, 1, '234234234', '69876964', 'lacalle 342', '');
+INSERT INTO `pacientes` (`id`, `apellido`, `nombre`, `dni`, `fec_nac`, `cobertura`, `numero`, `telefono`, `direccion`, `profesion`) VALUES
+(1, 'picapiedras', 'pedro', 42333432, '0000-00-00', 1, '234234234', '69876964', 'lacalle 342', '');
 
 -- --------------------------------------------------------
 
@@ -145,9 +146,9 @@ INSERT INTO `usuarios_tipo` (`tipo_id`, `tipo_descripcion`) VALUES
 --
 
 --
--- Filtros para la tabla `personas`
+-- Filtros para la tabla `pacientes`
 --
-ALTER TABLE `personas`
+ALTER TABLE `pacientes`
   ADD CONSTRAINT `FK_persona_cobertura` FOREIGN KEY (`cobertura`) REFERENCES `coberturas` (`id`);
 
 --
