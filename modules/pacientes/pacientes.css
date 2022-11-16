@@ -1,5 +1,15 @@
+html {
+  height: 100%;
+}
+
 body{
     background-color:#dee2e6;
+
+    background-image: url("./assets/images/imagen-fondo-index.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: 80%;
   
 }
  table.dataTable thead {
@@ -13,3 +23,5 @@ body{
   box-shadow: 10px 10px 50px 1px #7c7c81;
   border-radius: 10px;
 }
+
+

@@ -23,13 +23,17 @@
     <?php
         session_start();
         $_SESSION['action'] = "edit";
-        require_once('../db/connDB.php');
-        $conexion = regresarConexion();
+        require_once('../db/dbConnection.php');
 
         $id = $_GET['id'];
-        $consulta = "select * from pacientes where id = $id limit 1";
-        $result = mysqli_query($conexion, $consulta);
-        $row = mysqli_fetch_assoc($result);
+        $sql = "select * from pacientes where id = $id limit 1";
+        $p = db::conectar()->prepare($sql);
+        $p->execute();
+        $result = $p->fetchAll(PDO::FETCH_ASSOC);
+        // si por algun motivo no recupera el registro, vuelve a la pagina de pacientes
+        if(!$result){
+            header ("Location: ./pacientes.php");
+        }
     ?>
 
     <div class="container d-flex justify-content-center">

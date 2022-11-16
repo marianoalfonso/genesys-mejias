@@ -1,14 +1,19 @@
-<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
-<link href="../../assets/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
-<script src="../../assets/js/bootstrap.min.js"></script>
-<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-<script src="../../assets/js/jquery-3.6.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+
+    <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
 
     <!-- CSS personalizado --> 
-    <link rel="stylesheet" href="./login.css">  
+    <link rel="stylesheet" href="login.css">  
 
+</head>
 <body>
     <?php 
         require_once('../db/dbConnection.php');
@@ -63,3 +68,15 @@
         </div>
     </div>
 </body>
+
+    <!-- jquery, popper.js, bootstrap.js -->
+    <script src="../../assets/jquery/jquery-3.6.1.min.js"></script>
+    <script src="../../assets/popper/popper.min.js"></script>
+    <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
+
+</html>
+
+
+
+
+

@@ -25,6 +25,7 @@
 </head>
 <body>
 
+    <?php require_once("../../assets/pages/navBar.php"); ?>
 
     <div class="form-group">
         <br/>
