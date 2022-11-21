@@ -20,6 +20,9 @@
             echo "<br>".$row['prf_nombre'];
         //     var_dump($row);
         }
+        require_once("./assets/functions/date.php");
+        echo "<br>".calcularEdad('1972-08-08');
+
     } catch (PDOException $error1) {
         echo $error1->getMessage();
     } catch (Exception $error2) {

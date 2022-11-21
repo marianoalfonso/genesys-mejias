@@ -1,0 +1,4 @@
+$_SESSION['usuario'] = $result['usr_nombre'];
+$_SESSION['usuario_tipo'] = $result['tipo_descripcion'];
+$_SESSION['profesional'] = $profesional;
+$_SESSION['validate'] = true;

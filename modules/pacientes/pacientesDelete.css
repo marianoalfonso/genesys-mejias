@@ -1,0 +1,13 @@
+.container {
+    background-color: #17a2b8;
+    height: 520px;
+    max-width: 800px;
+    margin-top: 10px;
+    border-radius: 20px;
+}
+
+.container #delete-box {
+    margin-top: 5px;
+    padding: 10px;
+    
+  }

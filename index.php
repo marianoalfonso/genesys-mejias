@@ -15,11 +15,7 @@
 </head>
 <body>
     <?php require_once("./assets/pages/navBar.php"); ?>
-
-
-
-
-
+    
     <!-- bootstrap -->
     <script src="../popper/popper.min.js"></script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>

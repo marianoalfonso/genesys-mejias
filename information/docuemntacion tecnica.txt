@@ -1,0 +1,84 @@
+DATATABLE + JSON
+
+ej: TURNOSPROFESIONAL.PHP
+internienen 3 archivos
+    turnosProfesional.php   (muestra el datatable)
+    turnosProfesional.js    (asigna los campos del datatable )
+    turnosProfesionalCruc.php
+
+1) en el archivo turnosProfesional.php se agregan los campos de la cabecera del datatable
+
+    <table id="example" class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <td>id</td>
+                <td>profesional</td>
+                <td>dni</td>
+                <td>title</td>
+                <td>description</td>
+                <td>fecha/hora inicio</td>
+                <td>fecha/hora fin</td>
+                <td>.</td>
+                <td>.</td>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+y luego al final del documento se inicializa el javascript del datatable
+
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
+
+
+2) en el archivo turnosProfesional.js se asignan los campos al objeto datatable y se espedifica que
+   los datos se obtienene por AJAX mediente la url: turnosProfesionalCrud.php, y enviamos la opcion
+   como parametro ya que podemos obtener diferentes fuentes de datos (distintos selects, insert, update, etc)
+
+$(document).ready(function() {
+    var user_id, opcion;
+    opcion = 4;
+        
+    tablaUsuarios = $('#example').DataTable({  
+        "ajax":{            
+            "url": "turnosProfesionalCrud.php", 
+            "method": 'POST', //usamos el metodo POST
+            "data":{opcion:opcion}, //enviamos opcion 4 para que haga un SELECT
+            "dataSrc":""
+        },
+        "columns":[
+            {"data": "id"},
+            {"data": "profesional"},
+            {"data": "dni"},
+            {"data": "title"},
+            {"data": "description"},
+            {"data": "start"},
+            {"data": "end"},
+            {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-primary btn-sm btnEditar'><i class='material-icons'>edit</i></button><button class='btn btn-danger btn-sm btnBorrar'><i class='material-icons'>delete</i></button></div></div>"}
+        ]
+    }); 
+
+    3) en el archivo turnosProfesionalCrud.php procesamos el requerimiento depende del parametro OPCION que
+       recibimos, se genera la consulta correspondiente y se devuelve un resultado encodeado con formato JSON
+
+       switch($opcion){
+        case 1:
+            ..
+            ..
+  
+        case 4:    
+            $sql = "select id,profesional,dni,title,description,start,end from turnos";
+            $p = db::conectar()->prepare($sql);
+            $p->execute();
+            $resultado=$p->fetchAll(PDO::FETCH_ASSOC);
+            break;
+            
+}
+
+print json_encode($resultado, JSON_UNESCAPED_UNICODE);//envio el array final el formato json a AJAX
+$conexion=null;

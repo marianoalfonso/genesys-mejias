@@ -15,9 +15,9 @@
     <?php
         session_start();
         $pacientesDesarrollo = "//localhost/genesys-mejias/modules/pacientes/pacientes.php";
-        $turnosDesarrollo = "//localhost/genesys-mejias/modules/turnos/turnos.php";
+        $turnosDesarrollo = "//localhost/genesys-mejias/modules/turnos/turnosProfesional.php";
         $calendariosDesarrollo = "//localhost/genesys-mejias/modules/calendarios/calendarios.php";
-        $salirDesarrollo = "//localhost/genesys-mejias/modules/login/login.php";
+        $salirDesarrollo = "//localhost/genesys-mejias/modules/login/loginDesbloquearProfesional.php";
 
         $pacientesProduccion = "https://abocad.geatec.com.ar/modules/pacientes/pacientes.php";
         $profesionalesProduccion = "https://abocad.geatec.com.ar/modules/profesionales/profesionales.php";
@@ -45,8 +45,6 @@
                         <li class="nav-item"><a class="nav-link" href="<?php echo $pacientesDesarrollo ?>">pacientes</a></li>
                         <!-- menu turnos -->
                         <li class="nav-item"><a class="nav-link" href="<?php echo $turnosDesarrollo ?>">turnos</a></li>
-                        <!-- menu calendarios -->
-                        <li class="nav-item"><a class="nav-link" href="<?php echo $calendariosDesarrollo ?>">calendario</a></li>
                         <!-- menu salir -->
                         <li class="nav-item"><a class="nav-link" href=<?php echo $salirDesarrollo ?>>salir</a></li>
                     </ul>

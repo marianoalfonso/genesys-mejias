@@ -12,10 +12,14 @@
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <title>alta de personas</title>
+    <title>edicion de pacientes</title>
+
+    <link rel="stylesheet" href="./pacientesEdit.css">
+
 </head>
 <body>
-    <nav class="navbar navbar-light justify-content-center fs-3 mb-5" style="background-color: #00FF5573";>
+    <!-- <nav class="navbar navbar-light justify-content-center fs-3 mb-5" style="background-color: #00FF5573";> -->
+    <nav class="navbar navbar-light justify-content-center fs-3 mb-5" style="background-color: #17a2b8";>
         editar paciente
     </nav>
 
@@ -33,122 +37,110 @@
         // si por algun motivo no recupera el registro, vuelve a la pagina de pacientes
         if(!$result){
             header ("Location: ./pacientes.php");
+        } else {
+            $apellido = $result[0]['apellido'];
+            $nombre = $result[0]['nombre'];
+            $dni = $result[0]['dni'];
+            $fec_nac = $result[0]['fec_nac'];
+            $cobertura = $result[0]['cobertura'];
+            $numero = $result[0]['numero'];
+            $telefono = $result[0]['telefono'];
+            $direccion = $result[0]['direccion'];
+            $profesion = $result[0]['profesion'];
         }
     ?>
 
     <div class="container d-flex justify-content-center">
         <form action="pacientesCrud.php" method="post" style="width: 50vw; min-width: 300px;">
-            <div class="row">
-
-                <!-- id -->
-                <div class="col">
-                    <label class="form-label">id</label>
-                    <input type="numeric" class="form-control" name="id" value="<?php echo $id ?>" readonly>
-                </div>
-                <!-- estado -->
+            <div id="edit-box" class="col-md-12">
                 <div class="row">
+                    <!-- id -->
+                    <div class="col-md-2">
+                        <label class="form-label">id</label>
+                        <input type="numeric" class="form-control" name="id" value="<?php echo $id ?>" readonly>
+                    </div>
+                    <!-- apellido -->
+                    <div class="col-md-4">
+                        <label class="form-label">apellido</label>
+                        <input type="text" class="form-control" name="apellido" value="<?php echo $apellido?>">
+                    </div>
+                    <!-- nombre -->
+                    <div class="col-md-6">
+                        <label class="form-label">nombre</label>
+                        <input type="text" class="form-control" name="nombre" value="<?php echo $nombre?>">
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- dni -->
                     <div class="col">
-                        <div class="form-group mb-3">
-                            <label>estado</label> &nbsp;
-                            <input type="radio" class="form-check-input" name="estado" 
-                             id="activo" value="activo" <?php echo($row['estado'] == '1') ? "checked" : "";?> >
-                            <label for="male" class="form-input-label">activo</label>
-                            &nbsp;
-                            <input type="radio" class="form-check-input" name="estado" 
-                             id="inactivo" value="inactivo" <?php echo($row['estado'] == '0') ? "checked" : "";?> >
-                            <label for="male" class="form-input-label">inactivo</label>
-                        </div>
+                        <label class="form-label">dni</label>
+                        <input type="number" class="form-control" name="dni" value="<?php echo $dni?>">
+                    </div>                
+                    <!-- fecha nacimiento -->
+                    <div class="col">
+                        <label class="form-label">fec.nacimiento</label>
+                        <input type="date" class="form-control" name="fec_nac" value="<?php echo $fec_nac?>">
                     </div>
                 </div>
-                <!-- apellido -->
-                <div class="col">
-                    <label class="form-label">apellido</label>
-                    <input type="text" class="form-control" name="apellido" value="<?php echo $row['apellido']?>">
-                </div>
-                <!-- nombre -->
-                <div class="col">
-                    <label class="form-label">nombre</label>
-                    <input type="text" class="form-control" name="nombre" value="<?php echo $row['nombre']?>">
-                </div>
-            </div>
-            <div class="row">
-                <!-- dni -->
-                <div class="col">
-                    <label class="form-label">dni</label>
-                    <input type="number" class="form-control" name="dni" value="<?php echo $row['dni']?>">
-                </div>                
-            </div>
-            <div class="row">
-                <!-- direccion -->
-                <div class="col">
-                    <label class="form-label">direccion</label>
-                    <input type="text" class="form-control" name="direccion" value="<?php echo $row['direccion']?>">
-                </div>
-            </div>
-            <div class="row">
-                <!-- cobertura -->
-                <div class="col">
-                    <!-- cargamos el combo con las coberturas -->
-                    <label class="form label">cobertura</label>
-                    <select name = "cobertura" id="cobertura" class="form-control">
-                        <?php
-                            $sql = "select id,nombre from coberturas order by nombre";
-                            echo $sql;
-                            $datos = mysqli_query($conexion, $sql);
-                            $ep = mysqli_fetch_all($datos, MYSQLI_ASSOC);
-                            foreach($ep as $fila){
-                                // verificamos cual es la opcion que traemos desde la base de datos
-                                // para setearla como SELECTED
-                                if($fila['id'] == $row['cobertura1']){
-                                    $selected = 'selected';
-                                } else {
-                                    $selected = '';
+
+                <div class="row">
+                    <!-- cobertura -->
+                    <div class="col-md-12">
+                        <!-- cargamos el combo con las coberturas -->
+                        <label class="form label">cobertura</label>
+                        <select name = "cobertura" id="cobertura" class="form-control">
+                            <?php
+                                $sql = "select id,nombre from coberturas order by nombre";
+                                $p = db::conectar()->prepare($sql);
+                                $p->execute();
+                                $result = $p->fetchAll(PDO::FETCH_ASSOC);
+                                foreach($result as $row){
+                                    // verificamos cual es la opcion que traemos desde la base de datos
+                                    // para setearla como SELECTED
+                                    if($row['id'] == $cobertura){
+                                        $selected = 'selected';
+                                    } else {
+                                        $selected = '';
+                                    }
+                                    echo '<option value="'.$row["id"].'" '.$selected.'>'.$row["nombre"].'</option>';
                                 }
-                                echo '<option value="'.$fila["id"].'" '.$selected.'>'.$fila["nombre"].'</option>';
-                                // echo '<option value="'.$fila["id"].'">'.$fila["nombre"].'</option>';
-                            }
-                        ?>
-                    </select>
-                </div>
-                <!-- cobertura numero -->
-                <div class="col">
-                    <label class="form-label">numero</label>
-                    <input type="text" class="form-control" name="c1numero" value="<?php echo $row['c1numero']?>">
-                </div>
-            </div>
+                            ?>
+                        </select>
+                    </div>
 
-            <!-- reintegro -->
-            <div class="row">
-                <div class="col">
-                    <div class="form-group mb-3">
-                        <label>prestacion por reintegro?</label> &nbsp;
-                        <input type="radio" class="form-check-input" name="reintegro" 
-                            id="activo" value="si" <?php echo($row['reintegro'] == '1') ? "checked" : "";?> >
-                        <label for="si" class="form-input-label">si</label>
-                        &nbsp;
-                        <input type="radio" class="form-check-input" name="reintegro" 
-                            id="inactivo" value="no" <?php echo($row['reintegro'] == '0') ? "checked" : "";?> >
-                        <label for="no" class="form-input-label">no</label>
+                </div>
+                <div class="row">
+                    <!-- cobertura numero -->
+                    <div class="col-md-6">
+                        <label class="form-label">cobertura numero</label>
+                        <input type="text" class="form-control" name="numero" value="<?php echo $numero?>">
+                    </div>
+                    <!-- telefono -->
+                    <div class="col-md-6">
+                        <label class="form-label">telefono</label>
+                        <input type="text" class="form-control" name="telefono" value="<?php echo $telefono?>">
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
-                <!-- contacto -->
-                <div class="col">
-                    <label class="form-label">contacto</label>
-                    <textarea name="contacto" class="form-control" id="contacto"><?php echo $row['contacto']?></textarea>
+                <div class="row">
+                    <!-- direccion -->
+                    <div class="col-md-12">
+                        <label class="form-label">direccion</label>
+                        <input type="text" class="form-control" name="direccion" value="<?php echo $direccion?>">
+                    </div>
+                    <!-- profesion -->
+                    <div class="col-md-12">
+                        <label class="form-label">profesion</label>
+                        <input type="text" class="form-control" name="profesion" value="<?php echo $profesion?>">
+                    </div>
+                </div>
+                <!-- boton submit -->
+                <div>
+                    <br>
+                    <button type="submit" class="btn btn-warning" name="submit"><img src="../../assets/icons/editar.png" />  modificar</button>
+                    <a href="pacientes.php" class="btn btn-danger"><img src="../../assets/icons/borrar.png" />  cancelar</a>
                 </div>
             </div>
-            <!-- boton submit -->
-            <div>
-                <br>
-                <button type="submit" class="btn btn-success" name="submit">modificar</button>
-                <a href="pacientes.php" class="btn btn-danger">cancelar</a>
-            </div>
-            
-
-    </form>
+        </form>
     </div>
 
     <!-- bootstrap -->

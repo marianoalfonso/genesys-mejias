@@ -42,7 +42,7 @@
                                 <select name="profesional" class="form-control">
                                     <?php
                                         try {
-                                            $sql = "select prf_id, prf_nombre from profesionales order by 2";
+                                            $sql = "select prf_id, prf_nombre from profesionales where prf_bloqueo is null order by 2";
                                             $p = db::conectar()->prepare($sql);
                                             $p->execute();
                                             $datos = $p->fetchAll(PDO::FETCH_ASSOC);
@@ -54,12 +54,12 @@
                                         } catch (exception $error2) {
                                             echo "error general: ".$error1;
                                         }
-
                                     ?>
                                 </select>
                             </div>
                             <div class="form-group" >
-                                <input type="submit" value="ingresar" class="btn btn-warning col-md-12" name="logIn_button" id="logIn_button">
+                                <input type="submit" value="ingresar" class="btn btn-warning col-md-5" name="logIn_button" id="logIn_button" >
+                                <a href="" class="btn btn-warning col-md-5"><img src="../../assets/icons/cta-cte.png" />  ver agendas en uso</a>
                             </div>
                         </form>
                     </div>

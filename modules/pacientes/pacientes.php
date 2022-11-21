@@ -26,6 +26,7 @@
 <body>
 
     <?php require_once("../../assets/pages/navBar.php"); ?>
+    <?php require_once("../../assets/functions/date.php"); ?>
 
     <div class="form-group">
         <br/>
@@ -44,12 +45,11 @@
                             <th>apellido</th>
                             <th>nombre</th>                                
                             <th>dni</th>
-                            <th>fec.nac</th>  
-                            <th>direccion</th>
+                            <th>edad</th>  
                             <th>cobertura</th>
                             <th>socio</th>
                             <th>telefono</th>
-                            <th>profesion</th>
+                            <th></th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -58,8 +58,8 @@
                         
                     <?php
                         require_once("../db/dbConnection.php");
-                        $sql = "select pacientes.id as id,apellido,pacientes.nombre,dni,fec_nac,direccion,
-                                  coberturas.nombre as cobertura,numero as socio,telefono,profesion
+                        $sql = "select pacientes.id as id,apellido,pacientes.nombre,dni,fec_nac,
+                                  coberturas.nombre as cobertura,numero as socio,telefono
                                 from pacientes inner join coberturas ON
                                   pacientes.cobertura = coberturas.id
                                 order by apellido,pacientes.nombre";
@@ -72,13 +72,12 @@
                             <td><?php echo $row['apellido']; ?></td>
                             <td><?php echo $row['nombre']; ?></td>
                             <td><?php echo $row['dni']; ?></td>
-                            <td><?php echo $row['fec_nac']; ?></td>
-                            <td><?php echo $row['direccion']; ?></td>
+                            <td><?php echo calcularEdad($row['fec_nac']); ?></td>
                             <td><?php echo $row['cobertura']; ?></td>
                             <td><?php echo $row['socio']; ?></td>
                             <td><?php echo $row['telefono']; ?></td>
-                            <td><?php echo $row['profesion']; ?></td>
                             <!-- botones -->
+                            <td><a href="#"><img src="../../assets/icons/cta-cte.png" alt="cta.cte"></a></td>
                             <td><a href="./pacientesEdit.php?id=<?php echo $row['id'] ?>"><img src="../../assets/icons/editar.png" alt="modificar"></a></td>
                             <td><a href="./pacientesDelete.php?id=<?php echo $row['id'] ?>"><img src="../../assets/icons/borrar.png" alt="borrar"></a></td>
                         </tr>
