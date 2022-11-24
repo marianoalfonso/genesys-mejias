@@ -37,7 +37,7 @@
 
         <br/>
             <a href="#" class="btn btn-warning" disabled><img src="../../assets/icons/agregar-usuario.png" />  agregar turno</a>
-            <a href="#" class="btn btn-warning" disabled><img src="../../assets/icons/lista.png" />  prox. turnos disp.</a>
+            <a href="../calendarios/test.php" class="btn btn-warning" disabled><img src="../../assets/icons/lista.png" />  prox. turnos disp.</a>
             <a href="../calendarios/calendario.php?p=<?php echo $idProfesional ?>" class="btn btn-warning" disabled><img src="../../assets/icons/calendario.png" />  ver calendario</a>
         <br/><br/>
     </div>
@@ -57,6 +57,7 @@
                                 <td>description</td>
                                 <td>fecha/hora inicio</td>
                                 <td>fecha/hora fin</td>
+                                <td>estado</td>
                                 <td></td>
                                 <td></td>
                             </tr>
@@ -87,7 +88,6 @@
         $(document).ready(function () {
             $('#example').DataTable();
         });
-
         //ESTO DA ERROR DE INICIALIZACION DE LA TABLA
         // $(document).ready(function() {
         //     $('#example').DataTable( {

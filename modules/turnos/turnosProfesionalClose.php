@@ -94,13 +94,13 @@
                     <!-- cuenta corriente -->
                     <div class="col-md-5">
                         <label class="form-label">saldo</label>
-                        <input type="number" class="form-control" name="saldo" value="<?php echo $saldo ?>">
+                        <input type="number" class="form-control" name="saldo" value="<?php echo number_format(floatval($saldo),2) ?>">
                     </div>
 
                     <!-- pago -->
                     <div class="col-md-5">
                         <label class="form-label">pago</label>
-                        <input type="number" class="form-control" name="pago" >
+                        <input type="number" class="form-control" name="pago" value=0 >
                     </div>
                 </div>
 

@@ -4,6 +4,7 @@
     // $objeto = new Conexion();
     // $conexion = $objeto->Conectar();
 
+
 $apellido = (isset($_POST['apellido'])) ? $_POST['apellido'] : '';
 $nombre = (isset($_POST['nombre'])) ? $_POST['nombre'] : '';
 $dni = (isset($_POST['dni'])) ? $_POST['dni'] : '';
@@ -48,12 +49,15 @@ switch($opcion){
         //     break;
 
     // esta consulta se devuelve al formulario personas.php para poblar el datatable
-    case 4:    
-        $sql = "select turnos.id,pacientes.dni,concat(pacientes.apellido,' ',pacientes.nombre) as title,description,start,end 
+    case 4:
+        $sql = "select turnos.id,pacientes.dni,concat(pacientes.apellido,' ',pacientes.nombre) as title,description,
+        date_format(start, '%d/%m/%Y ( %H:%i )') as start,
+        date_format(end, '%d/%m/%Y ( %H:%i )') as end, estado
         from turnos
         inner join pacientes on
         turnos.dni = pacientes.dni
-        where profesional =:profesional";
+        where profesional =:profesional
+        and date(start) >= :hoy";
         // $sql = "select turnos.id,turnos.profesional,pacientes.dni,concat(pacientes.apellido,' ',pacientes.nombre) as title,description,start,end 
         // from turnos
         // inner join pacientes on
@@ -61,12 +65,19 @@ switch($opcion){
         // where profesional =:profesional";
         $p = db::conectar()->prepare($sql);
         $p->bindValue(':profesional', $_SESSION['profesional']);
+        $p->bindValue(':hoy', date('Y/m/d'));
         $p->execute();
         $resultado=$p->fetchAll(PDO::FETCH_ASSOC);
         break;
 
     case 5:    
-        $sql = "select id,dni,'oooo' as title,'oooo' as description,start,end from turnos";
+        $sql = "select turnos.id,pacientes.dni,concat(pacientes.apellido,' ',pacientes.nombre) as title,description,
+        date_format(start, '%d/%m/%Y ( %H:%i )') as start,
+        date_format(end, '%d/%m/%Y ( %H:%i )') as end
+        from turnos
+        inner join pacientes on
+        turnos.dni = pacientes.dni
+        where profesional =:profesional and estado = ''";
         $p = db::conectar()->prepare($sql);
         $p->execute();
         $resultado=$p->fetchAll(PDO::FETCH_ASSOC);

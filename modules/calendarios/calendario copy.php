@@ -66,15 +66,13 @@
         var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 events: consultaListado,
-                // initialView: 'dayGridMonth',
-                
+                initialView: 'dayGridMonth',
                 locale:"es",
                 headerToolbar:{
                     left:'prev,next today',
                     center:'title',
                     right:'dayGridMonth,timeGridWeek,timeGridDay',
                     },
-                    defaultView: 'agendaWeek',
                 dateClick: function(info){ //detecta click en la casilla del calendario
                     // recuperamos la informacion del dia que seleccionamos
                     limpiarFormulario();

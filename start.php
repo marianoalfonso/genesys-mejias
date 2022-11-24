@@ -1,3 +1,4 @@
+
 <?php
 
     echo 'mostrando pagina START.PHP';
@@ -30,5 +31,12 @@
     }
 
 
-
+    $saldo = "20.3";
+    $saldoFloat = floatval($saldo);
+    echo "<br>saldo: ".number_format($saldoFloat,2);
+    echo "<br>saldo: ".number_format(floatval($saldo),5);
+  
+    echo "<br>fecha: ".date('Y/m/d');
 ?>
+
+

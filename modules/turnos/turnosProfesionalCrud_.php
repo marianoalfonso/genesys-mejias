@@ -112,6 +112,7 @@
                         $p->execute();
                         if($p) {
                             echo '<br>log del pago insertado';
+                            header ("Location: ./turnosProfesional.php");
                         }
                     }
 

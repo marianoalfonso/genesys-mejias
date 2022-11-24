@@ -13,18 +13,31 @@ $(document).ready(function() {
         },
         "columns":[
             {"data": "id"},
-            // {"data": "profesional"},
             {"data": "dni"},
             {"data": "title"},
             {"data": "description"},
             {"data": "start"},
             {"data": "end"},
-            {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-light btn-sm btnEditar'><img src='../../assets/icons/editar.png' alt='modificar'></button><button class='btn btn-light btn-sm btnBorrar'><img src='../../assets/icons/borrar.png' alt='borrar'></button><button class='btn btn-success btn-sm btnCerrar'><img src='../../assets/icons/editar.png' alt='modificar'></button><button class='btn btn-light btn-sm btnCerrar'><img src='../../assets/icons/cerrar.png' alt='cerrar'></button><button class='btn btn-light btn-sm btnCerrar'><img src='../../assets/icons/editar.png' alt='modificar'></button></div></div>"}
+            {"data": "estado"},
+            {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-light btn-sm btnEditar'><img src='../../assets/icons/editar.png' alt='modificar'></button><button class='btn btn-light btn-sm btnBorrar'><img src='../../assets/icons/borrar.png' alt='borrar'></button><button class='btn btn-success btn-sm btnCerrar'><img src='../../assets/icons/editar.png' alt='modificar'></button><button class='btn btn-light btn-sm btnCerrar'><img src='../../assets/icons/cerrar.png' alt='cerrar'></button></div></div>"}
         ]
-    });  
+    });
+    tablaUsuarios.on("init", function(){
+        alert('fuera del for');
+        for(var i = 0; i < tablaUsuarios.rows().count(); i++) {
+            var row = tablaUsuarios.row(i);
+            console.log(row);
+            alert('fuera del if');
+            if(dni == "27433223") {
+                alert('dentro del if');
+                $(row.node()).css("background-color","#FF0000");   
+                alert();    
+            }
+        }
+    });
 
     // capturo el click del boton btnEditar
-    $(document).on("click", ".btnEditar", function(){		        
+    $(document).on("click", ".btnEditar", function(){		
         opcion = 2;//editar
         fila = $(this).closest("tr");
         id = parseInt(fila.find('td:eq(0)').text()); //capturo el ID
