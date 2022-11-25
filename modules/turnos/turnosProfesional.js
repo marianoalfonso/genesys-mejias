@@ -22,14 +22,15 @@ $(document).ready(function() {
             {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-light btn-sm btnEditar'><img src='../../assets/icons/editar.png' alt='modificar'></button><button class='btn btn-light btn-sm btnBorrar'><img src='../../assets/icons/borrar.png' alt='borrar'></button><button class='btn btn-success btn-sm btnCerrar'><img src='../../assets/icons/editar.png' alt='modificar'></button><button class='btn btn-light btn-sm btnCerrar'><img src='../../assets/icons/cerrar.png' alt='cerrar'></button></div></div>"}
         ]
     });
+    // tratando de colorear la tabla
     tablaUsuarios.on("init", function(){
-        alert('fuera del for');
+        // alert('fuera del for');
         for(var i = 0; i < tablaUsuarios.rows().count(); i++) {
             var row = tablaUsuarios.row(i);
-            console.log(row);
-            alert('fuera del if');
-            if(dni == "27433223") {
-                alert('dentro del if');
+            // console.log(row);
+            // alert('fuera del if');
+            if(title == "Messi Lionel") {
+                // alert('dentro del if');
                 $(row.node()).css("background-color","#FF0000");   
                 alert();    
             }

@@ -20,11 +20,13 @@
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.js"></script>
 
 
+
+
   <!-- Bootstrap CSS v5.2.0-beta1 -->
-  <link rel="stylesheet" href="css/bootstrap.min.css" >
-  <link rel="stylesheet" href="css/datatables.min.css" >
-  <link rel="stylesheet" href="css/bootstrap-clockpicker.css" >
-  <link rel="stylesheet" href="fullcalendar/main.css" >
+  <link rel="stylesheet" href="./css/bootstrap.min.css" >
+  <link rel="stylesheet" href="./css/datatables.min.css" >
+  <link rel="stylesheet" href="./css/bootstrap-clockpicker.css" >
+  <link rel="stylesheet" href="./fullcalendar/main.css" >
 
 
   <!-- full calendar -->   
@@ -40,7 +42,7 @@
 </head>
 <body>
 
-    <?php require_once("../../assets/pages/navBar.php") ?>
+    <?php //require_once("../../assets/pages/navBar.php") ?>
 
     <?php include "evento.php"; ?>
     <?php include "eventoInfo.php"; ?>
@@ -66,15 +68,24 @@
         var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 events: consultaListado,
-                // initialView: 'dayGridMonth',
-                
+                initialView: 'timeGridWeek',
+
+                businessHours: [{
+                    dow: [0, 1, 2, 3, 4, 5, 6], // Maybe not 0,6? Sunday,Saturday
+                    start: '08:00',
+                    end: '12:00'
+                }, {
+                    dow: [0, 1, 2, 3, 4, 5, 6], // Maybe not 0,6? Sunday,Saturday
+                    start: '13:00',
+                    end: '18:00'
+                }],
+
                 locale:"es",
                 headerToolbar:{
                     left:'prev,next today',
                     center:'title',
                     right:'dayGridMonth,timeGridWeek,timeGridDay',
                     },
-                    defaultView: 'agendaWeek',
                 dateClick: function(info){ //detecta click en la casilla del calendario
                     // recuperamos la informacion del dia que seleccionamos
                     limpiarFormulario();
