@@ -71,11 +71,11 @@
                 initialView: 'timeGridWeek',
 
                 businessHours: [{
-                    dow: [0, 1, 2, 3, 4, 5, 6], // Maybe not 0,6? Sunday,Saturday
+                    dow: [0, 1, 2, 3, 4, 5, 6, 7], // Maybe not 0,6? Sunday,Saturday
                     start: '08:00',
                     end: '12:00'
                 }, {
-                    dow: [0, 1, 2, 3, 4, 5, 6], // Maybe not 0,6? Sunday,Saturday
+                    dow: [0, 1, 2, 3, 4, 5, 6, 7], // Maybe not 0,6? Sunday,Saturday
                     start: '13:00',
                     end: '18:00'
                 }],
