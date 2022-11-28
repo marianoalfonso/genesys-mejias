@@ -72,6 +72,7 @@
                 events: consultaListado,
                 initialView: 'timeGridWeek',
 
+<<<<<<< HEAD
                 // No muestro los fines de semana
                 weekends: false,
                 hiddenDays: [0, 6],
@@ -81,6 +82,17 @@
                 axisFormat: 'HH:mm',
                 slotMinTime: '08:00',
                 slotMaxTime: '21:00',
+=======
+                businessHours: [{
+                    dow: [0, 1, 2, 3, 4, 5, 6, 7], // Maybe not 0,6? Sunday,Saturday
+                    start: '08:00',
+                    end: '12:00'
+                }, {
+                    dow: [0, 1, 2, 3, 4, 5, 6, 7], // Maybe not 0,6? Sunday,Saturday
+                    start: '13:00',
+                    end: '18:00'
+                }],
+>>>>>>> ec87a7969441d9da66e5f3be02b6f5c9063ec607
 
                 locale:"es",
                 headerToolbar:{
