@@ -19,7 +19,7 @@ $(document).ready(function() {
             {"data": "start"},
             {"data": "end"},
             {"data": "estado"},
-            {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-light btn-sm btnEditar'><img src='../../assets/icons/editar.png' alt='modificar'></button><button class='btn btn-light btn-sm btnBorrar'><img src='../../assets/icons/borrar.png' alt='borrar'></button><button class='btn btn-success btn-sm btnCerrar'><img src='../../assets/icons/editar.png' alt='modificar'></button><button class='btn btn-light btn-sm btnCerrar'><img src='../../assets/icons/cerrar.png' alt='cerrar'></button></div></div>"}
+            {"defaultContent": "<div class='text-center'><div class='btn-group'><button class='btn btn-light btn-sm btnEditar'><img src='../../assets/icons/editar.png' alt='modificar'></button><button class='btn btn-light btn-sm btnCerrar'><img src='../../assets/icons/cerrar.png' alt='cerrar'></button><button class='btn btn-light btn-sm btnBorrar'><img src='../../assets/icons/borrar.png' alt='borrar'></button></div></div>"}
         ]
     });
     // tratando de colorear la tabla

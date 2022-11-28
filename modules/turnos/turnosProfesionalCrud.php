@@ -57,12 +57,8 @@ switch($opcion){
         inner join pacientes on
         turnos.dni = pacientes.dni
         where profesional =:profesional
-        and date(start) >= :hoy";
-        // $sql = "select turnos.id,turnos.profesional,pacientes.dni,concat(pacientes.apellido,' ',pacientes.nombre) as title,description,start,end 
-        // from turnos
-        // inner join pacientes on
-        // turnos.dni = pacientes.dni
-        // where profesional =:profesional";
+        and date(start) >= :hoy
+        and estado = ''";
         $p = db::conectar()->prepare($sql);
         $p->bindValue(':profesional', $_SESSION['profesional']);
         $p->bindValue(':hoy', date('Y/m/d'));

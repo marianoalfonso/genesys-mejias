@@ -65,20 +65,22 @@
         var value = getParameterByName('p');
         var consultaListado = 'datosEventos.php?accion=listar&p=' + value
 
+        // https://stackoverflow.com/questions/69136421/remove-or-hide-a-specific-date-in-fullcalendar-v5
         var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
+
                 events: consultaListado,
                 initialView: 'timeGridWeek',
 
-                businessHours: [{
-                    dow: [0, 1, 2, 3, 4, 5, 6], // Maybe not 0,6? Sunday,Saturday
-                    start: '08:00',
-                    end: '12:00'
-                }, {
-                    dow: [0, 1, 2, 3, 4, 5, 6], // Maybe not 0,6? Sunday,Saturday
-                    start: '13:00',
-                    end: '18:00'
-                }],
+                // No muestro los fines de semana
+                weekends: false,
+                hiddenDays: [0, 6],
+
+                // Hora minima y maxima en la que se van a mostrar los eventos, con 30 minutos de separacion
+                timeFormat: 'H:mm',
+                axisFormat: 'HH:mm',
+                slotMinTime: '08:00',
+                slotMaxTime: '21:00',
 
                 locale:"es",
                 headerToolbar:{
@@ -86,6 +88,7 @@
                     center:'title',
                     right:'dayGridMonth,timeGridWeek,timeGridDay',
                     },
+
                 dateClick: function(info){ //detecta click en la casilla del calendario
                     // recuperamos la informacion del dia que seleccionamos
                     limpiarFormulario();
@@ -133,6 +136,8 @@
             });
             calendar.render();
 
+            // abre una fecha especifica
+            calendar.gotoDate("2012-10-05");
 
             //eventos de botones de la aplicacion
             // control del evento click sobre el boton AGREGAR
@@ -212,7 +217,7 @@
                     colorTexto: $('#colorTexto').val()
                 }
 
-                alert('id: ' + registro.id);
+                // alert('id: ' + registro.id);
                 // alert('id profesional: ' + registro.profesional);
                 // alert('dni: ' + registro.dni);
                 // alert('titulo ' + registro.titulo);
@@ -234,8 +239,9 @@
                 results = regex.exec(location.search);
                 return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
             }
-
         </script>
+
+    <script type="text/javascript" src="./calendario.js"></script>  
 
 </body>
 </html>

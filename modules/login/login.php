@@ -59,7 +59,7 @@
                             </div>
                             <div class="form-group" >
                                 <input type="submit" value="ingresar" class="btn btn-warning col-md-5" name="logIn_button" id="logIn_button" >
-                                <a href="" class="btn btn-warning col-md-5"><img src="../../assets/icons/cta-cte.png" />  ver agendas en uso</a>
+                                <a href="./agendasUso.php" class="btn btn-warning col-md-5"><img src="../../assets/icons/cta-cte.png" />  ver agendas en uso</a>
                             </div>
                         </form>
                     </div>
