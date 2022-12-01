@@ -64,10 +64,31 @@
             if(isset($_POST['submit'])){
                 $id = $_POST['id'];
                 try {
-                    $sql = "delete from pacientes where id = $id";
-                    $p = db::conectar()->prepare($sql);
-                    $p->execute();
-                    header ("Location: ./pacientes.php");
+                    $sql = "SELECT count(*) as turnos FROM turnos inner join pacientes ON
+                    turnos.dni = pacientes.dni WHERE pacientes.id =:id
+                    and turnos.estado <> ''";
+                    $t = db::conectar()->prepare($sql);
+                    $t->bindValue(':id', $id);
+                    $t->execute();
+                    $resultado = $t->fetch(PDO::FETCH_ASSOC);
+                    if($resultado['turnos'] != "0") {    //si tiene turnos cerrados no lo borramos
+                        $_SESSION['error'] = 'no puede eliminarse un paciente con turnos cerrados';
+                        header ("Location: ./pacientes.php");
+                    } else { //si no tiene turnos cerrados o tiene turnos futuros, lo borramo
+                        //borro el turno
+                        $sql = "delete turnos FROM turnos inner join pacientes ON
+                                turnos.dni = pacientes.dni WHERE pacientes.id =:id
+                                and turnos.estado <> ''";
+                        $r = db::conectar()->prepare($sql);
+                        $r->bindValue(':id', $id);
+                        $r->execute();
+                        // borro paciente
+                        $sql = "delete from pacientes where id = $id";
+                        $p = db::conectar()->prepare($sql);
+                        $p->execute();
+                        header ("Location: ./pacientes.php");                       
+                    }
+
                 } catch (PDOException $error1) {
                     echo $error1->getMessage();
                 } catch (Exception $error1) {

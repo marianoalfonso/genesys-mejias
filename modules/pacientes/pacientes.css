@@ -23,3 +23,11 @@ body{
   box-shadow: 10px 10px 50px 1px #7c7c81;
   border-radius: 10px;
 }
+
+
+
+.container {
+  background-color: #DAFBD0;
+  display: flex;
+  flex-direction: row;
+}

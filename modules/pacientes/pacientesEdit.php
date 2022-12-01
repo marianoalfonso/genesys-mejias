@@ -55,17 +55,16 @@
             <div id="edit-box" class="col-md-12">
                 <div class="row">
                     <!-- id -->
-                    <div class="col-md-2">
-                        <label class="form-label">id</label>
-                        <input type="numeric" class="form-control" name="id" value="<?php echo $id ?>" readonly>
+                    <div class="col>
+                        <input type="numeric" class="form-control" name="id" value="<?php echo $id ?>" hidden>
                     </div>
                     <!-- apellido -->
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         <label class="form-label">apellido</label>
                         <input type="text" class="form-control" name="apellido" value="<?php echo $apellido?>">
                     </div>
                     <!-- nombre -->
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <label class="form-label">nombre</label>
                         <input type="text" class="form-control" name="nombre" value="<?php echo $nombre?>">
                     </div>
@@ -85,7 +84,7 @@
 
                 <div class="row">
                     <!-- cobertura -->
-                    <div class="col-md-12">
+                    <div class="col">
                         <!-- cargamos el combo con las coberturas -->
                         <label class="form label">cobertura</label>
                         <select name = "cobertura" id="cobertura" class="form-control">

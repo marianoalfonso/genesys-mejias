@@ -12,7 +12,7 @@
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <title>edicion de pacientes</title>
+    <title>borrado de pacientes</title>
 
     <link rel="stylesheet" href="./pacientesDelete.css">
 
@@ -20,7 +20,7 @@
 <body>
     <!-- <nav class="navbar navbar-light justify-content-center fs-3 mb-5" style="background-color: #00FF5573";> -->
     <nav class="navbar navbar-light justify-content-center fs-3 mb-5" style="background-color: #17a2b8";>
-        editar paciente
+        borrar paciente
     </nav>
 
     <!-- obtenemos los datos del paciente a editar en base al id recibido por parametro -->

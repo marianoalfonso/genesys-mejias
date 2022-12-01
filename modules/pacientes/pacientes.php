@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
 
     <!-- CSS personalizado --> 
-    <link rel="stylesheet" href="./pacientes.css">  
+    <link rel="stylesheet" href="pacientes.css">  
     
 </head>
 <body>
@@ -28,10 +28,21 @@
     <?php require_once("../../assets/pages/navBar.php"); ?>
     <?php require_once("../../assets/functions/date.php"); ?>
 
-    <div class="form-group">
-        <br/>
-            <a href="./pacientesAdd.php" class="btn btn-warning" disabled><img src="../../assets/icons/agregar-usuario.png" />  agregar paciente</a>
-        <br/><br/>
+    <div class="container">
+        <div class="form-group">
+            <br/>
+                <a href="./pacientesAdd.php" class="btn btn-warning" disabled><img src="../../assets/icons/agregar-usuario.png" />  agregar paciente</a>
+            <br/><br/>
+        </div>
+
+        <div class="error">
+            <?php
+                if(isset($_SESSION['error'])) {
+                    echo $_SESSION['error'];
+                    unset($_SESSION['error']);
+                }
+            ?>
+        </div>
     </div>
 
     <div class="container caja">
