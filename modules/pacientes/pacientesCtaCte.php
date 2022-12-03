@@ -31,7 +31,8 @@
     <div class="container">
         <div class="form-group">
             <br/>
-                <a href="./pacientesAddMoney.php" class="btn btn-warning" disabled><img src="../../assets/icons/money.png" />  agregar saldo</a>
+                <!-- <a href="./pacientesAddMoney.php" class="btn btn-warning" disabled><img src="../../assets/icons/money.png" />  agregar saldo</a> -->
+                <button type="button" name="age" id="age" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-warning">agregar saldo</button>
             <br/><br/>
         </div>
 
