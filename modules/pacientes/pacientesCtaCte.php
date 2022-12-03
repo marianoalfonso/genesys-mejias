@@ -29,12 +29,7 @@
     <?php require_once("../../assets/functions/date.php"); ?>
 
     <div class="container">
-        <div class="form-group">
-            <br/>
-                <!-- <a href="./pacientesAddMoney.php" class="btn btn-warning" disabled><img src="../../assets/icons/money.png" />  agregar saldo</a> -->
-                <button type="button" name="age" id="age" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-warning">agregar saldo</button>
-            <br/><br/>
-        </div>
+
 
         <div class="error">
             <?php
@@ -49,14 +44,23 @@
                     // $saldo = (float)$row['saldo'];
                     $saldo = $row['saldo'];
                 }
-
             ?>
             
+            <div class="form-group">
+            <br/>
+                <!-- data-bs-toggle="modal" indicamos que vamos a abrir una venana modal con este link -->
+                <!-- data-bs-target="agregarSaldoModal" indicamos el id de la ventana modal -->
+                <h4>paciente: <?php echo $nombrePaciente; ?></h4>
+                <h4>saldo general: <?php echo "$ ".number_format((float)$saldo,2); ?></h4>
+                <a href="./pacientesAgregarSaldo.php?dni=<?php $_GET['dni']; ?>" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#agregarSaldoModal"><img src="../../assets/icons/money.png" />  agregar saldo</a>
+
+            <br/><br/>
+        </div>
+
         </div>
     </div> 
 
-    <h4>paciente: <?php echo $nombrePaciente; ?></h4>
-    <h4>saldo general: <?php echo "$ ".number_format((float)$saldo,2); ?></h4>
+
 
     <div class="container caja">
         <div class="row">
@@ -116,6 +120,8 @@
             </div>
         </div>  
     </div> 
+
+    <?php include "pacientesAgregarSaldo.php"; ?>
 
     <!-- jquery, popper.js, bootstrap.js -->
     <script src="../../assets/jquery/jquery-3.6.1.min.js"></script>

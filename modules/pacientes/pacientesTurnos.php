@@ -76,7 +76,9 @@
                         // $dni = $_GET['dni'];
                         $sql = "select 
                         turnos.id,turnos.profesional as idProf,profesionales.prf_nombre as profesional, 
-                        turnos.dni,turnos.title as nombre,turnos.description as tratamiento,turnos.start as fecha, estado
+                        turnos.dni,turnos.title as nombre,turnos.description as tratamiento,
+                        date_format(turnos.start,'%d/%m/%Y - (%H:%i)') as fecha,
+                        estado
                         from turnos 
                         left join profesionales on profesionales.prf_id = turnos.profesional
                         where dni = $dni order by start desc;";
