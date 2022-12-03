@@ -55,16 +55,17 @@
             <div id="edit-box" class="col-md-12">
                 <div class="row">
                     <!-- id -->
-                    <div class="col>
-                        <input type="numeric" class="form-control" name="id" value="<?php echo $id ?>" hidden>
+                    <div class="col-md-2">
+                        <label class="form-label">id</label>
+                        <input type="numeric" class="form-control" name="id" value="<?php echo $id ?>" readonly>
                     </div>
                     <!-- apellido -->
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <label class="form-label">apellido</label>
                         <input type="text" class="form-control" name="apellido" value="<?php echo $apellido?>">
                     </div>
                     <!-- nombre -->
-                    <div class="col-md-7">
+                    <div class="col-md-6">
                         <label class="form-label">nombre</label>
                         <input type="text" class="form-control" name="nombre" value="<?php echo $nombre?>">
                     </div>

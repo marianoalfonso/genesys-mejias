@@ -15,6 +15,7 @@
     <?php
         session_start();
         $pacientesDesarrollo = "//localhost/genesys-mejias/modules/pacientes/pacientes.php";
+        $profesionalesDesarrollo = "//localhost/genesys-mejias/modules/profesionales/profesionales.php";
         $turnosDesarrollo = "//localhost/genesys-mejias/modules/turnos/turnosProfesional.php";
         $calendariosDesarrollo = "//localhost/genesys-mejias/modules/calendarios/calendarios.php";
         $salirDesarrollo = "//localhost/genesys-mejias/modules/login/loginDesbloquearProfesional.php";
@@ -43,6 +44,8 @@
                     <ul class="navbar-nav ms-3">
                         <!-- menu pacientes -->
                         <li class="nav-item"><a class="nav-link" href="<?php echo $pacientesDesarrollo ?>">pacientes</a></li>
+                        <!-- menu profesionales -->
+                        <li class="nav-item"><a class="nav-link" href="<?php echo $profesionalesDesarrollo ?>">profesionales</a></li>
                         <!-- menu turnos -->
                         <li class="nav-item"><a class="nav-link" href="<?php echo $turnosDesarrollo ?>">turnos</a></li>
                         <!-- menu salir -->

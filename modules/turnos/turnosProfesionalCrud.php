@@ -58,7 +58,7 @@ switch($opcion){
         turnos.dni = pacientes.dni
         where profesional =:profesional
         and date(start) >= :hoy
-        and estado = ''";
+        or estado = ''";
         $p = db::conectar()->prepare($sql);
         $p->bindValue(':profesional', $_SESSION['profesional']);
         $p->bindValue(':hoy', date('Y/m/d'));

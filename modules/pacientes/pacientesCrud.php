@@ -65,14 +65,16 @@
                 $id = $_POST['id'];
                 try {
                     $sql = "SELECT count(*) as turnos FROM turnos inner join pacientes ON
-                    turnos.dni = pacientes.dni WHERE pacientes.id =:id
-                    and turnos.estado <> ''";
+                        turnos.dni = pacientes.dni WHERE pacientes.id = $id
+                        and (date(turnos.start) <= curdate())";
+
                     $t = db::conectar()->prepare($sql);
                     $t->bindValue(':id', $id);
                     $t->execute();
                     $resultado = $t->fetch(PDO::FETCH_ASSOC);
-                    if($resultado['turnos'] != "0") {    //si tiene turnos cerrados no lo borramos
-                        $_SESSION['error'] = 'no puede eliminarse un paciente con turnos cerrados';
+
+                    if($resultado['turnos'] != 0) {    //si tiene turnos cerrados no lo borramos
+                        $_SESSION['error'] = 'no puede eliminarse un paciente con turnos anteriores a hoy';
                         header ("Location: ./pacientes.php");
                     } else { //si no tiene turnos cerrados o tiene turnos futuros, lo borramo
                         //borro el turno

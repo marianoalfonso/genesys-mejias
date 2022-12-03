@@ -28,10 +28,10 @@
 <?php require_once("../../assets/pages/navBar.php"); ?>
     <?php require_once("../../assets/functions/date.php"); ?>
 
-    <!-- <div class="container">
+    <div class="container">
         <div class="form-group">
             <br/>
-                <a href="./pacientesAdd.php" class="btn btn-warning" disabled><img src="../../assets/icons/agregar-usuario.png" />  agregar paciente</a>
+                <a href="./pacientesAddMoney.php" class="btn btn-warning" disabled><img src="../../assets/icons/money.png" />  agregar saldo</a>
             <br/><br/>
         </div>
 
@@ -45,14 +45,17 @@
                 $resultado = $consulta->fetchall(PDO::FETCH_ASSOC);
                 foreach($resultado as $row){
                     $nombrePaciente = $row['nombre'];
+                    // $saldo = (float)$row['saldo'];
+                    $saldo = $row['saldo'];
                 }
 
             ?>
             
         </div>
-    </div> -->
-    <h4>listado de turnos ordenados desde el mas reciente</h4>
+    </div> 
+
     <h4>paciente: <?php echo $nombrePaciente; ?></h4>
+    <h4>saldo general: <?php echo "$ ".number_format((float)$saldo,2); ?></h4>
 
     <div class="container caja">
         <div class="row">
@@ -62,11 +65,12 @@
                     <thead class="text-center">
                         <tr>
                             <th>profesional</th>
-                            <th>tratamiento</th>
                             <th>fecha</th>
-                            <th>estado</th>
+                            <th>turno</th>
+                            <th>pago</th>                                
+                            <th>saldo</th>
                             <th></th>
-                            <!-- <th></th> -->
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>       
@@ -74,41 +78,34 @@
                     <?php
                         // require_once("../db/dbConnection.php");
                         // $dni = $_GET['dni'];
-                        $sql = "select 
-                        turnos.id,turnos.profesional as idProf,profesionales.prf_nombre as profesional, 
-                        turnos.dni,turnos.title as nombre,turnos.description as tratamiento,turnos.start as fecha, estado
-                        from turnos 
-                        left join profesionales on profesionales.prf_id = turnos.profesional
-                        where dni = $dni order by start desc;";
+                        $sql = "SELECT
+                            concat(pacientes.apellido,', ',pacientes.nombre) as nombre,
+                            cuentacorrientelog.ctacte_dni as dni,ctacte_idProfesional as idProfesional,
+                            profesionales.prf_nombre as profesional,ctaCte_fecha as fecha,
+                            turnos.description as turno,
+                            ctaCte_importePago as pago,ctacte_importeSaldo as saldo,
+                            pacientes.saldo as saldoPaciente
+                            FROM cuentacorrientelog
+                            inner join pacientes ON cuentacorrientelog.ctacte_dni = pacientes.dni
+                            inner join profesionales ON cuentacorrientelog.ctacte_idProfesional = profesionales.prf_id
+                            left join turnos on cuentacorrientelog.ctacte_idTurno = turnos.id
+                            where ctacte_dni = $dni
+                            and (ctaCte_importePago <> 0 and ctacte_importeSaldo <> 0)
+                            order by ctaCte_idProfesional, ctaCte_fecha";
 
                         $resultado = db::conectar()->prepare($sql);
                         $resultado->execute();        
                         $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
                         foreach($data as $row) {
                     ?>
-                            <td><a href="../calendarios/calendario.php?p=<?php echo $row['idProf'] ?>&nombre=<?php echo $row['profesional'] ?>"><img src="../../assets/icons/calendario.png" alt="calendario"></a><?php echo "  ".$row['profesional']; ?></td>
-                            <td><?php echo $row['tratamiento']; ?></td>
+                            <td><?php echo $row['profesional']; ?></td>
                             <td><?php echo $row['fecha']; ?></td>
-                            <td><?php 
-                                switch ($row['estado']){
-                                    case 'pre':
-                                        echo 'presente';
-                                    break;
-                                    case 'aCa':
-                                        echo 'ausente con aviso';
-                                    break;
-                                    case 'aSa':
-                                        echo 'ausente sin aviso';
-                                    break;   
-                                    case '':
-                                        echo 'sin cerrar';
-                                    break;                                 
-                                } ?>
-                            </td>
-
+                            <td><?php echo $row['turno']; ?></td>
+                            <td><?php echo "$ ".number_format((float)$row['pago']); ?></td>
+                            <td><?php echo "$ ".number_format((float)$row['saldo']); ?></td>
                             <!-- botones -->
                             <td><a href="#"><img src="../../assets/icons/lista.png" alt="turnos"></a></td>
-                            <!-- <td><a href="#"><img src="../../assets/icons/borrar.png" alt="borrar"></a></td> -->
+                            <td><a href="#"><img src="../../assets/icons/borrar.png" alt="borrar"></a></td>
                         </tr>
                         <?php } ?>
 

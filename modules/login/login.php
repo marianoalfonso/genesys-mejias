@@ -37,25 +37,25 @@
                                 <label for="password" class="text-info">password</label><br>
                                 <input type="password" name="password" class="form-control" value="test1234">
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="profesional" class="text-info">seleccionar agenda de profesional</label>
-                                <select name="profesional" class="form-control">
+                                <select name="profesional" class="form-control"> -->
                                     <?php
-                                        try {
-                                            $sql = "select prf_id, prf_nombre from profesionales where prf_bloqueo is null order by 2";
-                                            $p = db::conectar()->prepare($sql);
-                                            $p->execute();
-                                            $datos = $p->fetchAll(PDO::FETCH_ASSOC);
-                                            foreach ($datos as $row) {
-                                                echo "<option value = '".$row['prf_id']."'>".$row['prf_nombre']."</option>";
-                                            }    
-                                        } catch (PDOException $error1) {
-                                            echo "error PDO: ".$error1;
-                                        } catch (exception $error2) {
-                                            echo "error general: ".$error1;
-                                        }
+                                        // try {
+                                        //     $sql = "select prf_id, prf_nombre from profesionales where prf_bloqueo is null order by 2";
+                                        //     $p = db::conectar()->prepare($sql);
+                                        //     $p->execute();
+                                        //     $datos = $p->fetchAll(PDO::FETCH_ASSOC);
+                                        //     foreach ($datos as $row) {
+                                        //         echo "<option value = '".$row['prf_id']."'>".$row['prf_nombre']."</option>";
+                                        //     }    
+                                        // } catch (PDOException $error1) {
+                                        //     echo "error PDO: ".$error1;
+                                        // } catch (exception $error2) {
+                                        //     echo "error general: ".$error1;
+                                        // }
                                     ?>
-                                </select>
+                                <!-- </select> -->
                             </div>
                             <div class="form-group" >
                                 <input type="submit" value="ingresar" class="btn btn-warning col-md-5" name="logIn_button" id="logIn_button" >
