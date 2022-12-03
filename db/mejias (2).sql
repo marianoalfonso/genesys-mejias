@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 25-11-2022 a las 00:25:45
+-- Tiempo de generación: 03-12-2022 a las 10:42:20
 -- Versión del servidor: 8.0.21
 -- Versión de PHP: 7.4.9
 
@@ -65,12 +65,13 @@ CREATE TABLE IF NOT EXISTS `cuentacorrientelog` (
 --
 
 INSERT INTO `cuentacorrientelog` (`ctacte_dni`, `ctacte_idTurno`, `ctacte_idProfesional`, `ctaCte_fecha`, `ctaCte_importePago`, `ctacte_importeSaldo`) VALUES
-(27433223, 66, 3, '2022-11-21', '5000', '35000'),
+(11111145, 62, 3, '2022-11-21', '5000', '35000'),
 (11111145, 59, 1, '2022-11-23', '0', '0'),
 (23443445, 57, 1, '2022-11-23', '0', '0'),
 (23443445, 57, 1, '2022-11-23', '0', '0'),
 (23443445, 57, 1, '2022-11-23', '0', '0'),
-(27433223, 70, 1, '2022-11-24', '0', '0');
+(11111145, 70, 1, '2022-11-24', '0', '0'),
+(11111145, 74, 1, '2022-12-02', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -94,17 +95,16 @@ CREATE TABLE IF NOT EXISTS `pacientes` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `dni_UNIQUE` (`dni`),
   KEY `FK_persona_cobertura_idx` (`cobertura`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `pacientes`
 --
 
 INSERT INTO `pacientes` (`id`, `apellido`, `nombre`, `dni`, `fec_nac`, `cobertura`, `numero`, `telefono`, `direccion`, `profesion`, `saldo`) VALUES
-(2, 'Perez', 'Maria', 34222333, '1984-02-12', 1, '443223455456', '011-44532345', 'san martin 3243', 'verdulera', '0'),
-(3, 'Martinez', 'Laura', 23443445, '1994-11-23', 4, '21123444443', '011-33432233', 'alvarez jonte 2344', 'docente', '0'),
-(7, 'Martin', 'Orlando', 11111145, '1998-12-10', 3, '2222222222', '011-658765876', 'orcas 883', 'estudiante', '0'),
-(8, 'Messi', 'Lionel', 27433223, '1992-05-03', 4, '223444543', '023-44535246', 'arco del triunfo 3425', 'deportista profesional', '35000');
+(9, 'Messi', 'Lionel', 23544334, '1974-03-07', 4, '334556433', '0534-234238', 'paris le gaule 3254', 'deportista profesional', '175000'),
+(10, 'Brown', 'Diego', 23234223, '1997-08-10', 3, '2234999827890', '011-66544566', 'santa fe 3234', 'obrero de la metalurgia', '0'),
+(13, 'Lewandosky', 'Robert', 23445443, '1982-07-12', 4, '232125346235', '2343-22343211', 'sivorei 234', 'deportista profesional', '230000');
 
 -- --------------------------------------------------------
 
@@ -125,9 +125,38 @@ CREATE TABLE IF NOT EXISTS `profesionales` (
 --
 
 INSERT INTO `profesionales` (`prf_id`, `prf_nombre`, `prf_bloqueo`) VALUES
-(1, 'profesional A', 22925061),
+(1, 'profesional A', NULL),
 (2, 'profesional B', NULL),
 (3, 'profesional C', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `profesionaleshorarios`
+--
+
+DROP TABLE IF EXISTS `profesionaleshorarios`;
+CREATE TABLE IF NOT EXISTS `profesionaleshorarios` (
+  `idProfesional` tinyint NOT NULL,
+  `lunesDesde` time NOT NULL DEFAULT '08:00:00',
+  `lunesHasta` time NOT NULL DEFAULT '19:00:00',
+  `martesDesde` time NOT NULL DEFAULT '08:00:00',
+  `martesHasta` time NOT NULL DEFAULT '19:00:00',
+  `miercolesDesde` time NOT NULL DEFAULT '08:00:00',
+  `miercolesHasta` time NOT NULL DEFAULT '19:00:00',
+  `juevesDesde` time NOT NULL DEFAULT '08:00:00',
+  `juevesHasta` time NOT NULL DEFAULT '19:00:00',
+  `viernesDesde` time NOT NULL DEFAULT '08:00:00',
+  `viernesHasta` time NOT NULL DEFAULT '19:00:00',
+  PRIMARY KEY (`idProfesional`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `profesionaleshorarios`
+--
+
+INSERT INTO `profesionaleshorarios` (`idProfesional`, `lunesDesde`, `lunesHasta`, `martesDesde`, `martesHasta`, `miercolesDesde`, `miercolesHasta`, `juevesDesde`, `juevesHasta`, `viernesDesde`, `viernesHasta`) VALUES
+(1, '08:00:00', '19:00:00', '08:00:00', '19:00:00', '08:00:00', '19:00:00', '08:00:00', '19:00:00', '08:00:00', '19:00:00');
 
 -- --------------------------------------------------------
 
@@ -148,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `turnos` (
   `backgroundColor` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `estado` char(3) DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `turnos`
@@ -157,10 +186,9 @@ CREATE TABLE IF NOT EXISTS `turnos` (
 INSERT INTO `turnos` (`id`, `profesional`, `dni`, `title`, `description`, `start`, `end`, `textColor`, `backgroundColor`, `estado`) VALUES
 (1, 1, 33444555, 'test', 'test', '2022-11-19 10:00:00', '2022-11-19 11:00:00', NULL, NULL, '1'),
 (57, 1, 23443445, 'Martinez Laura', '', '2022-11-19 11:00:00', '2022-11-19 12:00:00', '#ffffff', '#3788d8', 'pre'),
-(59, 1, 11111145, 'Martin Orlando', '', '2022-11-20 14:00:00', '2022-11-20 15:00:00', '#ffffff', '#d7374f', 'aSa'),
 (60, 1, 23443445, 'Martinez Laura', '', '2022-11-20 15:00:00', '2022-11-20 15:00:00', '#ffffff', '#37d757', ''),
 (61, 1, 11111145, 'Martin Orlando', '', '2022-11-19 14:00:00', '2022-11-19 14:00:00', '#ffffff', '#37d74a', ''),
-(62, 3, 11111145, 'Martin Orlando', '', '2022-11-20 12:00:00', '2022-11-20 13:00:00', '#ffffff', '#3788d8', ''),
+(62, 3, 11111145, 'Martin Orlando', 'tratamiento de conducto', '2022-11-20 12:00:00', '2022-11-20 13:00:00', '#ffffff', '#3788d8', ''),
 (66, 3, 27433223, 'Messi Lionel', '', '2022-11-19 13:00:00', '2022-11-19 14:00:00', '#ffffff', '#d737c2', 'pre'),
 (67, 3, 23443445, 'Martinez Laura', '', '2022-11-19 12:00:00', '2022-11-19 13:00:00', '#ffffff', '#52d737', ''),
 (68, 3, 34222333, 'Perez Maria', '', '2022-11-19 14:00:00', '2022-11-19 15:00:00', '#ffffff', '#3788d8', ''),
@@ -168,7 +196,27 @@ INSERT INTO `turnos` (`id`, `profesional`, `dni`, `title`, `description`, `start
 (70, 1, 27433223, 'Messi Lionel', '', '2022-11-25 14:00:00', '2022-11-25 15:00:00', '#ffffff', '#3788d8', 'pre'),
 (71, 1, 23443445, 'Martinez Laura', '', '2022-11-25 16:00:00', '2022-11-25 17:00:00', '#ffffff', '#3788d8', ''),
 (73, 1, 34222333, 'Perez Maria', '', '2022-11-25 15:00:00', '2022-11-25 16:00:00', '#ffffff', '#d74237', ''),
-(74, 1, 11111145, 'Martin Orlando', '', '2022-11-25 17:00:00', '2022-11-25 18:00:00', '#ffffff', '#62d737', '');
+(75, 1, 27433223, 'Messi Lionel', '', '2022-11-28 08:00:00', '2022-11-28 09:00:00', '#ffffff', '#3788d8', ''),
+(76, 1, 34222333, 'Perez Maria', '', '2022-11-30 08:00:00', '2022-11-30 09:00:00', '#ffffff', '#d7373f', ''),
+(77, 1, 23443445, 'Martinez Laura', '', '2022-11-29 08:00:00', '2022-11-29 08:00:00', '#ffffff', '#3788d8', ''),
+(79, 1, 11111145, 'Martin Orlando', '', '2022-11-30 09:00:00', '2022-11-30 10:00:00', '#ffffff', '#3788d8', ''),
+(80, 1, 11111145, 'Martin Orlando', '', '2022-11-30 11:00:00', '2022-11-30 12:00:00', '#ffffff', '#3788d8', ''),
+(81, 1, 23544334, 'Messi Lionel', '', '2022-11-30 12:00:00', '2022-11-30 13:00:00', '#ffffff', '#3788d8', ''),
+(83, 1, 23544334, 'Messi Lionel', '', '2022-11-30 15:00:00', '2022-11-30 16:00:00', '#ffffff', '#7f37d7', ''),
+(84, 1, 23544334, 'Messi Lionel', '', '2022-11-30 17:00:00', '2022-11-30 18:00:00', '#ffffff', '#3788d8', ''),
+(85, 1, 23544334, 'Messi Lionel', '', '2022-11-30 20:00:00', '2022-11-30 21:00:00', '#ffffff', '#3788d8', ''),
+(86, 1, 23544334, 'Messi Lionel', '', '2022-11-30 18:00:00', '2022-11-30 19:00:00', '#ffffff', '#d75737', ''),
+(87, 1, 23544334, 'Messi Lionel', '', '2022-11-30 14:00:00', '2022-11-30 15:00:00', '#ffffff', '#3788d8', ''),
+(89, 1, 23544334, 'Messi Lionel', 'sobreturno control por dolor de muelas', '2022-12-01 10:30:00', '2022-12-01 11:00:00', '#ffffff', '#d73737', ''),
+(90, 1, 11111145, 'Martin Orlando', '', '2022-12-01 11:00:00', '2022-12-01 11:45:00', '#ffffff', '#3788d8', ''),
+(91, 1, 11111145, 'Martin Orlando', '', '2022-12-01 12:00:00', '2022-12-01 13:00:00', '#ffffff', '#3788d8', ''),
+(92, 1, 22334332, 'Serruto Maria', 'tratamiento de conducto', '2022-12-01 14:00:00', '2022-12-01 15:00:00', '#ffffff', '#d73737', ''),
+(93, 1, 23234223, 'Brown Diego', '', '2022-11-29 12:00:00', '2022-11-29 13:00:00', '#ffffff', '#3788d8', ''),
+(94, 1, 23234223, 'Brown Diego', '', '2022-11-28 13:00:00', '2022-11-28 14:00:00', '#ffffff', '#3788d8', ''),
+(95, 1, 23234223, 'Brown Diego', '', '2022-12-06 10:00:00', '2022-12-06 11:00:00', '#ffffff', '#3788d8', ''),
+(96, 1, 23234223, 'Brown Diego', '', '2022-12-06 11:00:00', '2022-12-06 12:00:00', '#ffffff', '#3788d8', ''),
+(97, 1, 23234223, 'Brown Diego', '', '2022-12-02 13:00:00', '2022-12-02 14:00:00', '#ffffff', '#3788d8', ''),
+(99, 3, 23445443, 'Lewandosky Robert', 'control por dolor de muela', '2022-11-30 10:00:00', '2022-11-30 11:00:00', '#ffffff', '#3788d8', '');
 
 -- --------------------------------------------------------
 
