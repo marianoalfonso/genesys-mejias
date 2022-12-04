@@ -51,8 +51,16 @@
             
         </div>
     </div> -->
-    <h4>listado de turnos ordenados desde el mas reciente</h4>
-    <h4>paciente: <?php echo $nombrePaciente; ?></h4>
+    <div class="container">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>paciente: <?php echo $nombrePaciente; ?></h4>
+                    <h5>listado de turnos ordenados desde el mas reciente</h5>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="container caja">
         <div class="row">

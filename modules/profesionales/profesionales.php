@@ -25,10 +25,12 @@
 
     <?php require_once('../../assets/pages/navBar.php'); ?>
 
-    <div class="form-group">
-        <br/>
-            <a href="profesionalesAdd.php" class="btn btn-warning" disabled>agregar profesional</a>
-        <br/><br/>
+    <div class="container">
+        <div class="form-group">
+            <br/>
+                <a href="profesionalesAdd.php" class="btn btn-warning" disabled>agregar profesional</a>
+            <br/><br/>
+        </div>
     </div>
 
     <div class="container caja">
@@ -43,7 +45,7 @@
                             <th></th>
                             <th></th>
                             <th></th>
-                            <th></th>
+                            <!-- <th></th> -->
                         </tr>
                     </thead>
                     <tbody>       
@@ -63,7 +65,7 @@
                             <td><a href="#"><img src="../../assets/icons/editar.png" alt="modificar"></a> editar</td>
                             <td><a href="#"><img src="../../assets/icons/borrar.png" alt="borrar"></a> borrar</td>
                             <td><a href="../turnos/turnosProfesional.php?id=<?php echo $row['prf_id'] ?>&nombre=<?php echo $row['prf_nombre'] ?>"><img src="../../assets/icons/lista.png" alt="turnos"></a> turnos</td>
-                            <td><a href="../calendarios/calendario.php?p=<?php echo $row['prf_id'] ?>&nombre=<?php echo $row['prf_nombre'] ?>"><img src="../../assets/icons/calendario.png" alt="calendario"></a> calendario</td>
+                            <!-- <td><a href="../calendarios/calendario.php?p=<?php //echo $row['prf_id'] ?>&nombre=<?php //echo $row['prf_nombre'] ?>"><img src="../../assets/icons/calendario.png" alt="calendario"></a> calendario</td> -->
                         </tr>
                     <?php } ?>
 

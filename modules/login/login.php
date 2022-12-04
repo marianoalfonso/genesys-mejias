@@ -58,8 +58,11 @@
                                 <!-- </select> -->
                             </div>
                             <div class="form-group" >
-                                <input type="submit" value="ingresar" class="btn btn-warning col-md-5" name="logIn_button" id="logIn_button" >
-                                <a href="./agendasUso.php" class="btn btn-warning col-md-5"><img src="../../assets/icons/cta-cte.png" />  ver agendas en uso</a>
+                                <div id="logInButton-column" class="col-md-12">
+                                    <input type="submit" value="ingresar" class="btn btn-warning col-md-12" name="logIn_button" id="logIn_button" >
+                                    <!-- <a href="./agendasUso.php" class="btn btn-warning col-md-5"><img src="../../assets/icons/cta-cte.png" />  ver agendas en uso</a> -->
+                            
+                                </div>
                             </div>
                         </form>
                     </div>

@@ -47,13 +47,17 @@
             ?>
             
             <div class="form-group">
-            <br/>
-                <!-- data-bs-toggle="modal" indicamos que vamos a abrir una venana modal con este link -->
-                <!-- data-bs-target="agregarSaldoModal" indicamos el id de la ventana modal -->
-                <h4>paciente: <?php echo $nombrePaciente; ?></h4>
-                <h4>saldo general: <?php echo "$ ".number_format((float)$saldo,2); ?></h4>
-                <a href="./pacientesAgregarSaldo.php?dni=<?php $_GET['dni']; ?>" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#agregarSaldoModal"><img src="../../assets/icons/money.png" />  agregar saldo</a>
-
+                <div class="row">
+                    <div class="col-md-9">
+                        <!-- data-bs-toggle="modal" indicamos que vamos a abrir una venana modal con este link -->
+                        <!-- data-bs-target="agregarSaldoModal" indicamos el id de la ventana modal -->
+                        <h4>paciente: <?php echo $nombrePaciente; ?></h4>
+                        <h4>saldo general: <?php echo "$ ".number_format((float)$saldo,2); ?></h4>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="./pacientesAgregarSaldo.php?dni=<?php $_GET['dni']; ?>" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#agregarSaldoModal"><img src="../../assets/icons/money.png" />  agregar saldo</a>
+                    </div>
+                </div>
             <br/><br/>
         </div>
 
@@ -71,22 +75,20 @@
                         <tr>
                             <th>profesional</th>
                             <th>fecha</th>
-                            <th>turno</th>
+                            <th>concepto</th>
                             <th>pago</th>                                
-                            <!-- <th>saldo</th> -->
-                            <th></th>
-                            <th></th>
+                            <!-- <th></th> -->
+                            <!-- <th></th> -->
                         </tr>
                     </thead>
                     <tbody>       
                         
                     <?php
-                        // require_once("../db/dbConnection.php");
-                        // $dni = $_GET['dni'];
                         $sql = "SELECT
                             concat(pacientes.apellido,', ',pacientes.nombre) as nombre,
                             cuentacorrientelog.ctacte_dni as dni,ctacte_idProfesional as idProfesional,
-                            profesionales.prf_nombre as profesional,ctaCte_fecha as fecha,
+                            profesionales.prf_nombre as profesional,
+                            date_format(ctaCte_fecha, '%d/%m/%Y') as fecha,
                             turnos.description as turno,
                             ctaCte_importePago as pago,ctacte_importeSaldo as saldo,
                             pacientes.saldo as saldoPaciente
@@ -109,8 +111,8 @@
                             <td><?php echo "$ ".number_format((float)$row['pago']); ?></td>
                             <!-- <td><?php //echo "$ ".number_format((float)$row['saldo']); ?></td> -->
                             <!-- botones -->
-                            <td><a href="#"><img src="../../assets/icons/lista.png" alt="turnos"></a></td>
-                            <td><a href="#"><img src="../../assets/icons/borrar.png" alt="borrar"></a></td>
+                            <!-- <td><a href="#"><img src="../../assets/icons/lista.png" alt="turnos"></a></td> -->
+                            <!-- <td><a href="#"><img src="../../assets/icons/borrar.png" alt="borrar"></a></td> -->
                         </tr>
                         <?php } ?>
 

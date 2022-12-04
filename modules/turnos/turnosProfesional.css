@@ -4,7 +4,6 @@ html {
 
 body{
     background-color:#dee2e6;
-    background-image: url("./assets/images/imagen-fondo-index.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center center;
@@ -17,8 +16,15 @@ body{
 }
 
 .caja{
-  /* border: 1px solid; */
+  border: 1px solid;
   padding: 5px;
   box-shadow: 10px 10px 50px 1px #7c7c81;
   border-radius: 10px;
+}
+
+.container {
+  background-color: #DAFBD0;
+  /* display: flex; */
+  justify-content: center;
+  flex-direction: row;
 }

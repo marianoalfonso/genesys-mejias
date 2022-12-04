@@ -34,21 +34,21 @@
     ?>
 
     <!-- <h3>profesional: <?php //echo $nombreProfesional ?></h3> -->
-    <div class="form-group">
-
-        <br/>
-            <a href="#" class="btn btn-warning" disabled><img src="../../assets/icons/agregar-usuario.png" />  agregar turno</a>
-            <a href="../calendarios/test.php" class="btn btn-warning" disabled><img src="../../assets/icons/lista.png" />  prox. turnos disp.</a>
-            <!-- <a href="../calendarios/calendario.php?p=<?php //echo $idProfesional ?>" class="btn btn-warning" disabled><img src="../../assets/icons/calendario.png" />  ver calendario</a> -->
-            <a href="../calendarios/calendario.php" class="btn btn-warning" disabled><img src="../../assets/icons/calendario.png" />ver calendario</a>
-        <br/><br/>
+    <div class="container">
+        <div class="form-group">
+            <br/>
+                <a href="#" class="btn btn-warning" disabled><img src="../../assets/icons/agregar-usuario.png" />  agregar turno</a>
+                <a href="../calendarios/test.php" class="btn btn-warning" disabled><img src="../../assets/icons/lista.png" />  prox. turnos disp.</a>
+                <!-- <a href="../calendarios/calendario.php?p=<?php //echo $idProfesional ?>" class="btn btn-warning" disabled><img src="../../assets/icons/calendario.png" />  ver calendario</a> -->
+                <a href="../calendarios/calendario.php" class="btn btn-warning" disabled><img src="../../assets/icons/calendario.png" />ver calendario</a>
+            <br/><br/>
+        </div>
     </div>
 
     <div class="container caja">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col">
                 <div class="table-responsive">   
-
                     <table id="example" class="table table-striped" style="width:100%">
                         <thead>
                             <tr>
@@ -69,16 +69,14 @@
                         <tbody>
 
                         <?php
-                            $sql = "select turnos.id as idTurno,turnos.profesional as idProfesional,profesionales.prf_nombre as profesional,
-                            pacientes.dni,concat(pacientes.apellido,' ',pacientes.nombre) as nombre,description as descripcion,
-                            date_format(start, '%d/%m/%Y ( %H:%i )') as desde,
-                            date_format(end, '%d/%m/%Y ( %H:%i )') as hasta, estado
-                            from turnos
-                            inner join pacientes on turnos.dni = pacientes.dni
-                            inner join profesionales on turnos.profesional = profesionales.prf_id
-                            where date(start) >= curdate()
-                            or estado = ''";
+                            // $idProf = $_GET['id'];
+                            $sql = "select turnos.id as idTurno,turnos.profesional as idProfesional,profesionales.prf_nombre as profesional, 
+                                pacientes.dni,concat(pacientes.apellido,' ',pacientes.nombre) as nombre,description as descripcion,
+                                date_format(start, '%d/%m/%Y ( %H:%i )') as desde,date_format(end, '%d/%m/%Y ( %H:%i )') as hasta, estado
+                            from turnos inner join pacientes on turnos.dni = pacientes.dni inner join profesionales on turnos.profesional = profesionales.prf_id 
+                            where turnos.profesional = :idProf and (date(start) >= curdate() or estado = '')";
                             $p = db::conectar()->prepare($sql);
+                            $p->bindValue('idProf',$_GET['id']);
                             $p->execute();
                             $datos = $p->fetchAll(PDO::FETCH_ASSOC);
                             foreach($datos as $row){

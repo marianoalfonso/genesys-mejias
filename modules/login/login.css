@@ -6,20 +6,29 @@ body {
   }
   #login .container #login-row #login-column #login-box {
     margin-top: 60px;
-    max-width: 600px;
-    height: 320px;
+    max-width: 500px;
+    height: 230px;
     border: 1px solid #9C9C9C;
     background-color: #EAEAEA;
   }
   #login .container #login-row #login-column #login-box #login-form {
     padding: 20px;
   }
-  /* #login .container #login-row #login-column #login-box #login-form #register-link {
+  #login .container #login-row #login-column #login-box #login-form #register-link {
     margin-top: -85px;
-  } */
+  }
 
   #logIn_button {
     margin-top: 15px;
+    align-self: auto;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+  }
+
+  #login-box {
+    margin-left: auto;
+    margin-right: auto;
   }
 
 
