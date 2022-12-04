@@ -42,15 +42,15 @@
 </head>
 <body>
 
-    <?php //require_once("../../assets/pages/navBar.php") ?>
+    <?php require_once("../../assets/pages/navBar.php") ?>
 
     <?php include "evento.php"; ?>
     <?php include "eventoInfo.php"; ?>
 
     <?php
-        //$nombre_profesional = $_GET['nombre'];
+        $nombre_profesional = $_GET['nombre'];
     ?>
-    <h3>profesional: <?php //echo $nombre_profesional ?></h3>
+    <h3>profesional: <?php echo $nombre_profesional ?></h3>
     
     <!-- definicion del calendario -->
     <div class="container">

@@ -28,32 +28,31 @@
     <?php require_once("../../assets/pages/navBar.php"); ?>
     <?php require_once("../db/dbConnection.php"); ?>
 
-    <!-- obtengo id y nombre del profesional -->
+    <!-- obtengo id y nombre del profesional
     <?php
-        if(isset($_GET['id'])) {
-            // verifico si ya existe la sesion del usuario, sino, la inicio
-            if (session_status() === PHP_SESSION_NONE) {
-                session_start();
-            }
-            $_SESSION['idProfesional'] = $_GET['id'];
-            $_SESSION['nombreProfesional'] = $_GET['nombre'];
-            $idProfesional = $_SESSION['idProfesional'];
-            $nombreProfesional = $_SESSION['nombreProfesional'];
-        } else {$idProfesional = $_SESSION['idProfesional'];
-            $nombreProfesional = $_SESSION['nombreProfesional'];
-        }
-    ?>
+        // if(isset($_GET['id'])) {
+        //     // verifico si ya existe la sesion del usuario, sino, la inicio
+        //     if (session_status() === PHP_SESSION_NONE) {
+        //         session_start();
+        //     }
+        //     $_SESSION['idProfesional'] = $_GET['id'];
+        //     $_SESSION['nombreProfesional'] = $_GET['nombre'];
+        //     $idProfesional = $_SESSION['idProfesional'];
+        //     $nombreProfesional = $_SESSION['nombreProfesional'];
+        // } else {$idProfesional = $_SESSION['idProfesional'];
+        //     $nombreProfesional = $_SESSION['nombreProfesional'];
+        // }
+    ?> -->
 
     <!-- <h3>profesional: <?php //echo $nombreProfesional ?></h3> -->
     <div class="container">
         <div class="form-group">
             <div class="col">
-                <h4>profesional: <?php echo $nombreProfesional; ?></h4>
+                <h4>listado de todos los turnos / profesional </h4>
             </div>
             <div class="col">
                 <!-- <a href="#" class="btn btn-warning" disabled><img src="../../assets/icons/agregar-usuario.png" />  agregar turno</a> -->
                 <a href="../calendarios/test.php" class="btn btn-warning" disabled><img src="../../assets/icons/lista.png" />  prox. turnos disp.</a>
-                <a href="../calendarios/calendario.php?p=<?php echo $idProfesional ?>" class="btn btn-warning" disabled><img src="../../assets/icons/calendario.png" />  ver calendario</a>
                 </div>
         </div>
     </div>
@@ -67,12 +66,12 @@
                             <tr>
                                 <td>id</td>
                                 <td>idProf</td>
-                                <!-- <td>profesional</td> -->
+                                <td>profesional</td>
                                 <td>dni</td>
                                 <td>paciente</td>
                                 <td>description</td>
-                                <td>fecha/hora inicio</td>
-                                <td>fecha/hora fin</td>
+                                <td>fecha/hora</td>
+                                <!-- <td>fecha/hora fin</td> -->
                                 <td>estado</td>
                                 <td></td>
                                 <td></td>
@@ -83,36 +82,35 @@
 
                         <?php
                             // $idProf = $_GET['id'];
-                            $sql = "select turnos.id as idTurno,turnos.profesional as idProfesional, 
+                            $sql = "select turnos.id as idTurno,turnos.profesional as idProfesional, profesionales.prf_nombre as profesional,
                                 pacientes.dni,concat(pacientes.apellido,' ',pacientes.nombre) as nombre,description as descripcion,
-                                date_format(start, '%d/%m/%Y ( %H:%i )') as desde,date_format(end, '%d/%m/%Y ( %H:%i )') as hasta, estado
+                                concat(date_format(start, '%d/%m/%Y (%H:%i'),' - ', date_format(end, '%H:%i)')) as horario, estado
                             from turnos inner join pacientes on turnos.dni = pacientes.dni inner join profesionales on turnos.profesional = profesionales.prf_id 
-                            where turnos.profesional = :idProf and (date(start) >= curdate() or estado = '')";
+                            where (date(start) >= curdate() or estado = '')";
                             $p = db::conectar()->prepare($sql);
-                            $p->bindValue('idProf', $idProfesional);
                             $p->execute();
                             $datos = $p->fetchAll(PDO::FETCH_ASSOC);
                             foreach($datos as $row){
                                 $idTurno = $row['idTurno'];
                                 $idProfesional = $row['idProfesional'];
-                                // $profesional = $row['profesional'];
+                                $profesional = $row['profesional'];
                                 $dni = $row['dni'];
                                 $nombre = $row['nombre'];
                                 $descripcion = $row['descripcion'];
-                                $desde = $row['desde'];
-                                $hasta = $row['hasta'];
+                                $desde = $row['horario'];
+                                // $hasta = $row['hasta'];
                                 $estado = $row['estado'];
                             ?>
                                 <tr>
                                     <td><?php echo $idTurno ?></td>
                                     <td><?php echo $idProfesional ?></td>
-                                    <!-- <td><a href="../calendarios/calendario.php?p=<?php //echo $row['idProfesional'] ?>&nombre=<?php //echo $row['profesional'] ?>"><img src="../../assets/icons/calendario.png" alt="calendario"></a><?php //echo "  ".$row['profesional']; ?></td> -->
+                                    <td><a href="../calendarios/calendario.php?p=<?php echo $row['idProfesional'] ?>&nombre=<?php echo $row['profesional'] ?>"><img src="../../assets/icons/calendario.png" alt="calendario"></a><?php echo "  ".$row['profesional']; ?></td>
                                     <!-- <td><?php //echo $profesional ?></td> -->
                                     <td><?php echo $dni ?></td>
                                     <td><?php echo $nombre ?></td>
                                     <td><?php echo $descripcion ?></td>                      
                                     <td><?php echo $desde ?></td>
-                                    <td><?php echo $hasta ?></td>
+                                    <!-- <td><?php //echo $hasta ?></td> -->
                                     <td><?php echo $estado ?></td>
                                     <td><a href="./turnosProfesionalClose.php?idTurno=<?php echo $idTurno ?>"><img src="../../assets/icons/cerrar.png" alt="cerrar"></a></td>
                                     <td><a href="./turnosEdit.php?id=<?php echo $idTurno ?>"><img src="../../assets/icons/editar.png" alt="modificar"></a></td>

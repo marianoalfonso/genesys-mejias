@@ -16,7 +16,7 @@
         session_start();
         $pacientesDesarrollo = "//localhost/genesys-mejias/modules/pacientes/pacientes.php";
         $profesionalesDesarrollo = "//localhost/genesys-mejias/modules/profesionales/profesionales.php";
-        $turnosDesarrollo = "//localhost/genesys-mejias/modules/turnos/turnosProfesional.php";
+        $turnosDesarrollo = "//localhost/genesys-mejias/modules/turnos/turnosGeneral.php";
         $calendariosDesarrollo = "//localhost/genesys-mejias/modules/calendarios/calendarios.php";
         $salirDesarrollo = "//localhost/genesys-mejias/modules/login/loginDesbloquearProfesional.php";
 

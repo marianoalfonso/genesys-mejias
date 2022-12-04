@@ -73,7 +73,7 @@
                             <th>tratamiento</th>
                             <th>fecha</th>
                             <th>estado</th>
-                            <th></th>
+                            <!-- <th></th> -->
                             <!-- <th></th> -->
                         </tr>
                     </thead>
@@ -85,7 +85,7 @@
                         $sql = "select 
                         turnos.id,turnos.profesional as idProf,profesionales.prf_nombre as profesional, 
                         turnos.dni,turnos.title as nombre,turnos.description as tratamiento,
-                        date_format(turnos.start,'%d/%m/%Y - (%H:%i)') as fecha,
+                        concat(date_format(start, '%d/%m/%Y (%H:%i'),' - ', date_format(end, '%H:%i)')) as fecha,
                         estado
                         from turnos 
                         left join profesionales on profesionales.prf_id = turnos.profesional
@@ -117,7 +117,7 @@
                             </td>
 
                             <!-- botones -->
-                            <td><a href="#"><img src="../../assets/icons/lista.png" alt="turnos"></a></td>
+                            <!-- <td><a href="#"><img src="../../assets/icons/lista.png" alt="turnos"></a></td> -->
                             <!-- <td><a href="#"><img src="../../assets/icons/borrar.png" alt="borrar"></a></td> -->
                         </tr>
                         <?php } ?>
