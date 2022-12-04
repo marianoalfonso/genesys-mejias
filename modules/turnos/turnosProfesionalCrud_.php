@@ -62,16 +62,19 @@
             if(isset($_POST['submit'])){
                 $dni = $_POST['dni'];
                 $idTurno = $_POST['idTurno'];
-                $idProfesional = $_SESSION['profesional'];
+                $idProfesional = $_POST['idProfesional'];
                 $fechaCierre = date('Y-m-d');
-                $impPago = $_POST['pago'];
-                $impSaldo = $_POST['saldo'] - $_POST['pago'];
+                $impPago = (double)$_POST['pago'];
+                $saldo = str_replace(',','',str_replace('$','',$_POST['saldo']));
+                $pago = str_replace(',','',str_replace('$','',$_POST['pago']));
+                $impSaldo = $saldo - $pago;
 
                 // echo "<br>dni: ".$dni;
                 // echo "<br>idTurno: ".$idTurno;
                 // echo "<br>idProfesional: ".$idProfesional;
                 // echo "<br>fechaCierre: ".$fechaCierre;
                 // echo "<br>impPago: ".$impPago;
+                // echo "<br>Saldo: ".str_replace(',','',str_replace('$','',$saldo));
                 // echo "<br>impSaldo: ".$impSaldo;
                 // die();
 
@@ -82,16 +85,14 @@
                 $p->bindValue(':idTurno', $_POST['idTurno']);
                 $p->execute();
                 if($p) {
-                    echo '<br>estado del turno asignado';
                     $p = null;
                     //hacer el update con el resultado del saldo del paciente
-                    $sql = "update PACIENTES set saldo = saldo - :pago where dni =:dni";
+                    $sql = "update PACIENTES set saldo =:impSaldo where dni =:dni";
                     $p = db::conectar()->prepare($sql);
-                    $p->bindValue(':pago', $_POST['pago']);
+                    $p->bindValue(':impSaldo', $impSaldo);
                     $p->bindValue(':dni', $_POST['dni']);
                     $p->execute();
                     if($p) {
-                        echo '<br>saldo del paciente actualizado';
                         $p = null;
                         //hacer el insert en la tabla de log de pagos
                         $sql = "insert into CUENTACORRIENTELOG (`ctacte_dni`,
@@ -105,10 +106,6 @@
                         $p->bindValue(':fecha', $fechaCierre);
                         $p->bindValue(':impPago', $impPago);
                         $p->bindValue(':impSaldo', $impSaldo);
-
-                        // echo ("<br>".$sql);
-                        // die();
-
                         $p->execute();
                         if($p) {
                             echo '<br>log del pago insertado';

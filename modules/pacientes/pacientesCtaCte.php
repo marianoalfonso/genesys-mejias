@@ -73,7 +73,7 @@
                             <th>fecha</th>
                             <th>turno</th>
                             <th>pago</th>                                
-                            <th>saldo</th>
+                            <!-- <th>saldo</th> -->
                             <th></th>
                             <th></th>
                         </tr>
@@ -96,7 +96,7 @@
                             left join turnos on cuentacorrientelog.ctacte_idTurno = turnos.id
                             where ctacte_dni = $dni
                             and (ctaCte_importePago <> 0 and ctacte_importeSaldo <> 0)
-                            order by ctaCte_idProfesional, ctaCte_fecha";
+                            order by ctaCte_fecha";
 
                         $resultado = db::conectar()->prepare($sql);
                         $resultado->execute();        
@@ -107,7 +107,7 @@
                             <td><?php echo $row['fecha']; ?></td>
                             <td><?php echo $row['turno']; ?></td>
                             <td><?php echo "$ ".number_format((float)$row['pago']); ?></td>
-                            <td><?php echo "$ ".number_format((float)$row['saldo']); ?></td>
+                            <!-- <td><?php //echo "$ ".number_format((float)$row['saldo']); ?></td> -->
                             <!-- botones -->
                             <td><a href="#"><img src="../../assets/icons/lista.png" alt="turnos"></a></td>
                             <td><a href="#"><img src="../../assets/icons/borrar.png" alt="borrar"></a></td>

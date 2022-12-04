@@ -6,21 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <!-- Bootstrap CSS v5.2.0-beta1 -->
-    <!-- <link rel="stylesheet" href="../css/bootstrap.min.css" >
-    <link rel="stylesheet" href="../css/datatables.min.css" >
-    <link rel="stylesheet" href="../css/bootstrap-clockpicker.css" >
-    <link rel="stylesheet" href="../fullcalendar/main.css" > -->
-
     <!-- bootstrap -->
     <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
 
     <!-- font awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" 
-    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
 
-    <link rel="stylesheet" href="./turnosProfesionalClose.css">
+    <link rel="stylesheet" href="turnosProfesionalClose.css">
 
 </head>
 <body>
@@ -31,20 +23,20 @@
     <?php
         session_start();
         $_SESSION['action'] = "close";
-        $id = $_GET['id'];
+        $idTurno = $_GET['idTurno'];
         require_once("../db/dbConnection.php");
         $sql = "select profesional,pacientes.dni,title,description,start,end,textColor,backgroundColor,
-                    pacientes.saldo
+                    pacientes.saldo as saldo
                     from turnos inner join pacientes on
                     turnos.dni = pacientes.dni
-                    where turnos.id = $id limit 1";
+                    where turnos.id = $idTurno limit 1";
         $p = db::conectar()->prepare($sql);
         $p->execute();
         $resultado = $p->fetchAll(PDO::FETCH_ASSOC);
         foreach($resultado as $row){
             $title = $row['title'];
             $dni = $row['dni'];
-            $profesional = $row['profesional'];
+            $idProfesional = $row['profesional'];
             $turnoDesde =substr($row['start'],0,10)." ( ".substr($row['start'],11,8)." - ".substr($row['end'],11,8);
             $saldo = $row['saldo'];
         }
@@ -57,8 +49,10 @@
                     <!-- id -->
                     <div class="col-md-2">
                         <label class="form-label">id</label>
-                        <input type="number" class="form-control" name="idTurno" value="<?php echo $id; ?>" readonly>
+                        <input type="number" class="form-control" name="idTurno" value="<?php echo $idTurno; ?>" readonly>
                     </div>
+
+                    <input type="hidden" name="idProfesional" id="idProfesional" value="<?php echo $idProfesional; ?>">
 
                     <!-- apellido y nombre -->
                     <div class="col-md-7">
@@ -75,13 +69,14 @@
                 </div>
                 <div class="row">
                     <!-- turno desde-->
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label class="form-label">turno asignado</label>
                         <input type="text" class="form-control" name="turnoDesde" value="<?php echo $turnoDesde ?> )" readonly>
                     </div>
-
-                    <!-- importe pagado -->
-                    <div class="col-md-4">
+                </div>
+                <div class="row">
+                    <!-- estado del turno -->
+                    <div class="col-md-12">
                         <label for="estadoCierreTurno">estado de cierre del turno</label>
                         <select name="estadoCierreTurno" class="form-control">
                             <option value="pre">presente</option>
@@ -92,24 +87,25 @@
                 </div>
                 <div class="row">
                     <!-- cuenta corriente -->
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <label class="form-label">saldo</label>
-                        <input type="number" class="form-control" name="saldo" value="<?php echo number_format(floatval($saldo),2) ?>">
+                        <input type="text" class="form-control" name="saldo" value="<?php echo "$ ".number_format((float)$saldo) ?>">
                     </div>
-
                     <!-- pago -->
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <label class="form-label">pago</label>
                         <input type="number" class="form-control" name="pago" value=0 >
                     </div>
                 </div>
 
-                <div class="row">
-                    <input type="submit" class="btn btn-warning" name="submit" value="cerrar turno"></button>
-                    <a href="./turnosProfesional.php" class="btn btn-danger">cancelar</a>
-                </div>
-
             </div>
+
+            <div class="text-center">
+                    <input type="submit" class="btn btn-warning" name="submit" value="cerrar turno"></button>
+                    <a href="turnosProfesional.php" class="btn btn-danger">cancelar</a>
+            </div>
+
+            
         </form>
     </div>
 

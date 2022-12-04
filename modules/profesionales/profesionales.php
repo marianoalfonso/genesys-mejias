@@ -88,27 +88,5 @@
     <!-- js personalizado -->
     <script type="text/javascript" src="profesionales.js"></script>
 
-    
-
-    <!-- <script src="//code.jquery.com/jquery-3.5.1.js"></script> -->
-    <!-- <script src="../../assets/js/jquery-3.6.1.min.js"></script> -->
-    <!-- <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script> -->
-    <!-- <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script> -->
-
-    <!-- <script type="text/javascript" src="./pacientes.js"></script>   -->
-    <!-- <script src="assets/bootstrap/js/bootstrap.min.js"></script> -->
-    <!-- <script src="../../assets/bootstrap/js/bootstrap.min.js"></script> -->
-
-    <!-- <script>
-        $(document).ready(function() {
-            $('#example').DataTable( {
-                language: {
-                    url: '//cdn.datatables.net/plug-ins/1.12.1/i18n/es-AR.json'
-                }
-            } );
-        } );
-    </script> -->
-
-    
 </body>
 </html>
