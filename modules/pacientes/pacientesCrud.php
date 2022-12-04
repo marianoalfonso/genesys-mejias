@@ -80,7 +80,7 @@
                         //borro el turno
                         $sql = "delete turnos FROM turnos inner join pacientes ON
                                 turnos.dni = pacientes.dni WHERE pacientes.id =:id
-                                and turnos.estado <> ''";
+                                and turnos.estado =  ''";
                         $r = db::conectar()->prepare($sql);
                         $r->bindValue(':id', $id);
                         $r->execute();
