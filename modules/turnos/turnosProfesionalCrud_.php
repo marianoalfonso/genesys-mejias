@@ -60,6 +60,9 @@
 
         case 'close':
             if(isset($_POST['submit'])){
+
+                $origenCierre = $_SESSION['origenCierreTurno'];
+
                 $dni = $_POST['dni'];
                 $idTurno = $_POST['idTurno'];
                 $idProfesional = $_POST['idProfesional'];
@@ -109,7 +112,11 @@
                         $p->execute();
                         if($p) {
                             echo '<br>log del pago insertado';
-                            header ("Location: ./turnosProfesional.php");
+                            if($origenCierre == "general") {
+                                header ("Location: ./turnosGeneral.php");
+                            } else {
+                                header ("Location: ./turnosProfesional.php");
+                            }
                         }
                     }
 

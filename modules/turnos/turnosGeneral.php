@@ -28,21 +28,11 @@
     <?php require_once("../../assets/pages/navBar.php"); ?>
     <?php require_once("../db/dbConnection.php"); ?>
 
-    <!-- obtengo id y nombre del profesional
+
     <?php
-        // if(isset($_GET['id'])) {
-        //     // verifico si ya existe la sesion del usuario, sino, la inicio
-        //     if (session_status() === PHP_SESSION_NONE) {
-        //         session_start();
-        //     }
-        //     $_SESSION['idProfesional'] = $_GET['id'];
-        //     $_SESSION['nombreProfesional'] = $_GET['nombre'];
-        //     $idProfesional = $_SESSION['idProfesional'];
-        //     $nombreProfesional = $_SESSION['nombreProfesional'];
-        // } else {$idProfesional = $_SESSION['idProfesional'];
-        //     $nombreProfesional = $_SESSION['nombreProfesional'];
-        // }
-    ?> -->
+        // session_start();
+        $_SESSION['origenCierreTurno'] = "general";
+    ?> 
 
     <!-- <h3>profesional: <?php //echo $nombreProfesional ?></h3> -->
     <div class="container">

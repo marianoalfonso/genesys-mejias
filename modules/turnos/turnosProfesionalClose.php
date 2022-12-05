@@ -23,6 +23,8 @@
     <?php
         session_start();
         $_SESSION['action'] = "close";
+
+
         $idTurno = $_GET['idTurno'];
         require_once("../db/dbConnection.php");
         $sql = "select profesional,pacientes.dni,title,description,start,end,textColor,backgroundColor,
