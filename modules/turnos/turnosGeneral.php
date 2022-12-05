@@ -43,7 +43,15 @@
             <div class="col">
                 <!-- <a href="#" class="btn btn-warning" disabled><img src="../../assets/icons/agregar-usuario.png" />  agregar turno</a> -->
                 <a href="../calendarios/test.php" class="btn btn-warning" disabled><img src="../../assets/icons/lista.png" />  prox. turnos disp.</a>
-                </div>
+            </div>
+            <div class="error">
+                <?php
+                    if(isset($_SESSION['error'])) { ?>
+                        <h3><?php echo $_SESSION['error']; ?></h3>
+                        <?php unset($_SESSION['error']);
+                    }
+                ?>
+            </div>
         </div>
     </div>
 

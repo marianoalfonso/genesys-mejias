@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 05-12-2022 a las 16:38:30
--- Versión del servidor: 5.7.36
--- Versión de PHP: 7.4.26
+-- Host: 127.0.0.1:3306
+-- Generation Time: Dec 04, 2022 at 07:01 PM
+-- Server version: 8.0.21
+-- PHP Version: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,24 +18,24 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `mejias`
+-- Database: `mejias`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `coberturas`
+-- Table structure for table `coberturas`
 --
 
 DROP TABLE IF EXISTS `coberturas`;
 CREATE TABLE IF NOT EXISTS `coberturas` (
-  `id` tinyint(4) NOT NULL,
+  `id` tinyint NOT NULL,
   `nombre` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Volcado de datos para la tabla `coberturas`
+-- Dumping data for table `coberturas`
 --
 
 INSERT INTO `coberturas` (`id`, `nombre`) VALUES
@@ -47,21 +47,21 @@ INSERT INTO `coberturas` (`id`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `cuentacorrientelog`
+-- Table structure for table `cuentacorrientelog`
 --
 
 DROP TABLE IF EXISTS `cuentacorrientelog`;
 CREATE TABLE IF NOT EXISTS `cuentacorrientelog` (
-  `ctacte_dni` int(11) NOT NULL COMMENT 'dni del paciente',
-  `ctacte_idTurno` int(11) NOT NULL,
-  `ctacte_idProfesional` int(11) NOT NULL,
+  `ctacte_dni` int NOT NULL COMMENT 'dni del paciente',
+  `ctacte_idTurno` int NOT NULL,
+  `ctacte_idProfesional` int NOT NULL,
   `ctaCte_fecha` date NOT NULL,
   `ctaCte_importePago` decimal(10,0) NOT NULL,
   `ctacte_importeSaldo` decimal(10,0) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Volcado de datos para la tabla `cuentacorrientelog`
+-- Dumping data for table `cuentacorrientelog`
 --
 
 INSERT INTO `cuentacorrientelog` (`ctacte_dni`, `ctacte_idTurno`, `ctacte_idProfesional`, `ctaCte_fecha`, `ctaCte_importePago`, `ctacte_importeSaldo`) VALUES
@@ -83,39 +83,34 @@ INSERT INTO `cuentacorrientelog` (`ctacte_dni`, `ctacte_idTurno`, `ctacte_idProf
 (23443445, 71, 1, '2022-12-04', '0', '5'),
 (23443445, 71, 1, '2022-12-04', '0', '5'),
 (34222333, 77, 1, '2022-12-04', '10000', '30000'),
-(23443445, 76, 1, '2022-12-04', '0', '5'),
-(11111145, 62, 3, '2022-12-05', '0', '0'),
-(11111145, 74, 1, '2022-12-05', '0', '0'),
-(34222333, 68, 3, '2022-12-05', '0', '30000'),
-(12887663, 89, 1, '2022-12-05', '20000', '100000'),
-(12887663, 88, 2, '2022-12-05', '50000', '50000');
+(23443445, 76, 1, '2022-12-04', '0', '5');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `pacientes`
+-- Table structure for table `pacientes`
 --
 
 DROP TABLE IF EXISTS `pacientes`;
 CREATE TABLE IF NOT EXISTS `pacientes` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `apellido` varchar(45) NOT NULL,
   `nombre` varchar(45) NOT NULL,
-  `dni` int(11) NOT NULL,
+  `dni` int NOT NULL,
   `fec_nac` date NOT NULL,
-  `cobertura` tinyint(4) NOT NULL,
+  `cobertura` tinyint NOT NULL,
   `numero` varchar(45) DEFAULT NULL,
   `telefono` varchar(45) DEFAULT NULL,
   `direccion` varchar(100) DEFAULT NULL,
-  `profesion` text,
+  `profesion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `saldo` decimal(10,0) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `dni_UNIQUE` (`dni`),
   KEY `FK_persona_cobertura_idx` (`cobertura`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Volcado de datos para la tabla `pacientes`
+-- Dumping data for table `pacientes`
 --
 
 INSERT INTO `pacientes` (`id`, `apellido`, `nombre`, `dni`, `fec_nac`, `cobertura`, `numero`, `telefono`, `direccion`, `profesion`, `saldo`) VALUES
@@ -123,25 +118,24 @@ INSERT INTO `pacientes` (`id`, `apellido`, `nombre`, `dni`, `fec_nac`, `cobertur
 (3, 'Martinez', 'Laura', 23443445, '1994-11-23', 4, '21123444443', '011-33432233', 'alvarez jonte 2344', 'docente', '5'),
 (7, 'Martin', 'Orlando', 11111145, '1998-12-10', 3, '2222222222', '011-658765876', 'orcas 883', 'estudiante', '0'),
 (8, 'Messi', 'Lionel', 27433223, '1992-05-03', 4, '223444543', '023-44535246', 'arco del triunfo 3425', 'deportista profesional', '50000'),
-(9, 'Luter', 'Laureano', 12887663, '1957-02-04', 2, '4443221114', '011-44536556', 'olleros 1233', 'jubilado', '50000'),
-(12, 'Eleno', 'Mariel', 22332445, '1972-09-05', 2, '223454443564', '011-55211125', 'Superi 2342', 'peluquera', '0');
+(9, 'Luter', 'Laureano', 12887663, '1957-02-04', 2, '4443221114', '011-44536556', 'olleros 1233', 'jubilado', '120000');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `profesionales`
+-- Table structure for table `profesionales`
 --
 
 DROP TABLE IF EXISTS `profesionales`;
 CREATE TABLE IF NOT EXISTS `profesionales` (
-  `prf_id` int(11) NOT NULL AUTO_INCREMENT,
+  `prf_id` int NOT NULL AUTO_INCREMENT,
   `prf_nombre` varchar(60) NOT NULL,
-  `prf_bloqueo` int(11) DEFAULT NULL COMMENT 'dni del profesional que tiene bloqueada la agenda',
+  `prf_bloqueo` int DEFAULT NULL COMMENT 'dni del profesional que tiene bloqueada la agenda',
   PRIMARY KEY (`prf_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Volcado de datos para la tabla `profesionales`
+-- Dumping data for table `profesionales`
 --
 
 INSERT INTO `profesionales` (`prf_id`, `prf_nombre`, `prf_bloqueo`) VALUES
@@ -152,26 +146,26 @@ INSERT INTO `profesionales` (`prf_id`, `prf_nombre`, `prf_bloqueo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `turnos`
+-- Table structure for table `turnos`
 --
 
 DROP TABLE IF EXISTS `turnos`;
 CREATE TABLE IF NOT EXISTS `turnos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `profesional` int(11) NOT NULL,
-  `dni` int(11) NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `description` text CHARACTER SET utf8mb4,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `profesional` int NOT NULL,
+  `dni` int NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `start` datetime DEFAULT NULL,
   `end` datetime DEFAULT NULL,
-  `textColor` varchar(7) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `backgroundColor` varchar(7) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `textColor` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `backgroundColor` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `estado` char(3) DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `turnos`
+-- Dumping data for table `turnos`
 --
 
 INSERT INTO `turnos` (`id`, `profesional`, `dni`, `title`, `description`, `start`, `end`, `textColor`, `backgroundColor`, `estado`) VALUES
@@ -180,14 +174,15 @@ INSERT INTO `turnos` (`id`, `profesional`, `dni`, `title`, `description`, `start
 (59, 1, 11111145, 'Martin Orlando', '', '2022-11-20 14:00:00', '2022-11-20 15:00:00', '#ffffff', '#d7374f', 'aSa'),
 (60, 1, 23443445, 'Martinez Laura', '', '2022-11-20 15:00:00', '2022-11-20 15:00:00', '#ffffff', '#37d757', 'pre'),
 (61, 1, 11111145, 'Martin Orlando', '', '2022-11-19 14:00:00', '2022-11-19 14:00:00', '#ffffff', '#37d74a', 'aSa'),
-(62, 3, 11111145, 'Martin Orlando', '', '2022-11-20 12:00:00', '2022-11-20 13:00:00', '#ffffff', '#3788d8', 'aCa'),
+(62, 3, 11111145, 'Martin Orlando', '', '2022-11-20 12:00:00', '2022-11-20 13:00:00', '#ffffff', '#3788d8', ''),
 (66, 3, 27433223, 'Messi Lionel', '', '2022-11-19 13:00:00', '2022-11-19 14:00:00', '#ffffff', '#d737c2', 'pre'),
 (67, 3, 23443445, 'Martinez Laura', '', '2022-11-19 12:00:00', '2022-11-19 13:00:00', '#ffffff', '#52d737', 'pre'),
-(68, 3, 34222333, 'Perez Maria', '', '2022-11-19 14:00:00', '2022-11-19 15:00:00', '#ffffff', '#3788d8', 'aCa'),
+(68, 3, 34222333, 'Perez Maria', '', '2022-11-19 14:00:00', '2022-11-19 15:00:00', '#ffffff', '#3788d8', ''),
+(69, 1, 23443445, 'Martinez Laura', '', '2022-11-22 08:00:00', '2022-11-22 09:00:00', '#ffffff', '#3788d8', ''),
 (70, 1, 27433223, 'Messi Lionel', '', '2022-11-25 14:00:00', '2022-11-25 15:00:00', '#ffffff', '#3788d8', 'pre'),
 (71, 1, 23443445, 'Martinez Laura', '', '2022-11-25 16:00:00', '2022-11-25 17:00:00', '#ffffff', '#3788d8', 'pre'),
 (73, 1, 34222333, 'Perez Maria', '', '2022-11-25 15:00:00', '2022-11-25 16:00:00', '#ffffff', '#d74237', 'pre'),
-(74, 1, 11111145, 'Martin Orlando', '', '2022-11-25 17:00:00', '2022-11-25 18:00:00', '#ffffff', '#62d737', 'pre'),
+(74, 1, 11111145, 'Martin Orlando', '', '2022-11-25 17:00:00', '2022-11-25 18:00:00', '#ffffff', '#62d737', ''),
 (75, 1, 27433223, 'Messi Lionel', '', '2022-11-24 12:00:00', '2022-11-24 13:00:00', '#ffffff', '#3788d8', 'pre'),
 (76, 1, 23443445, 'Martinez Laura', '', '2022-11-25 11:00:00', '2022-11-25 12:00:00', '#ffffff', '#3788d8', 'aSa'),
 (77, 1, 34222333, 'Perez Maria', '', '2022-12-05 09:00:00', '2022-12-05 10:00:00', '#ffffff', '#d73747', 'pre'),
@@ -199,30 +194,29 @@ INSERT INTO `turnos` (`id`, `profesional`, `dni`, `title`, `description`, `start
 (84, 1, 27433223, 'Messi Lionel', '', '2022-11-29 15:00:00', '2022-11-29 16:00:00', '#ffffff', '#3788d8', 'pre'),
 (85, 1, 27433223, 'Messi Lionel', '', '2022-11-29 16:00:00', '2022-11-29 17:00:00', '#ffffff', '#3788d8', 'pre'),
 (86, 1, 27433223, 'Messi Lionel', '', '2022-11-29 17:00:00', '2022-11-29 18:00:00', '#ffffff', '#3788d8', 'pre'),
-(88, 2, 12887663, 'Luter Laureano', 'inicio tratamiento implante segundo molar', '2022-12-05 10:00:00', '2022-12-05 11:00:00', '#ffffff', '#3788d8', 'pre'),
-(89, 1, 12887663, 'Luter Laureano', 'control de rutina', '2022-11-30 14:00:00', '2022-11-30 15:00:00', '#ffffff', '#3788d8', 'pre'),
+(88, 2, 12887663, 'Luter Laureano', 'inicio tratamiento implante segundo molar', '2022-12-05 10:00:00', '2022-12-05 11:00:00', '#ffffff', '#3788d8', ''),
+(89, 1, 12887663, 'Luter Laureano', 'control de rutina', '2022-11-30 14:00:00', '2022-11-30 15:00:00', '#ffffff', '#3788d8', ''),
 (90, 2, 23443445, 'Martinez Laura', 'dolor de muelas (sobreturno)', '2022-12-06 11:00:00', '2022-12-06 12:00:00', '#ffffff', '#d73737', ''),
-(91, 1, 27433223, 'Messi Lionel', '', '2022-11-30 15:00:00', '2022-11-30 16:00:00', '#ffffff', '#3788d8', ''),
-(95, 1, 22332445, 'Eleno Mariel', 'control por dolor de muela', '2022-12-06 11:00:00', '2022-12-06 12:00:00', '#ffffff', '#3788d8', '');
+(91, 1, 27433223, 'Messi Lionel', '', '2022-11-30 15:00:00', '2022-11-30 16:00:00', '#ffffff', '#3788d8', '');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios`
+-- Table structure for table `usuarios`
 --
 
 DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE IF NOT EXISTS `usuarios` (
-  `usr_dni` int(11) NOT NULL,
+  `usr_dni` int NOT NULL,
   `usr_nombre` varchar(60) NOT NULL,
   `usr_password` varchar(45) NOT NULL,
-  `usr_tipo` tinyint(4) NOT NULL,
+  `usr_tipo` tinyint NOT NULL,
   PRIMARY KEY (`usr_dni`),
   KEY `fk_usuario_tipo_idx` (`usr_tipo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Volcado de datos para la tabla `usuarios`
+-- Dumping data for table `usuarios`
 --
 
 INSERT INTO `usuarios` (`usr_dni`, `usr_nombre`, `usr_password`, `usr_tipo`) VALUES
@@ -231,18 +225,18 @@ INSERT INTO `usuarios` (`usr_dni`, `usr_nombre`, `usr_password`, `usr_tipo`) VAL
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios_tipo`
+-- Table structure for table `usuarios_tipo`
 --
 
 DROP TABLE IF EXISTS `usuarios_tipo`;
 CREATE TABLE IF NOT EXISTS `usuarios_tipo` (
-  `tipo_id` tinyint(4) NOT NULL,
+  `tipo_id` tinyint NOT NULL,
   `tipo_descripcion` varchar(45) NOT NULL,
   PRIMARY KEY (`tipo_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Volcado de datos para la tabla `usuarios_tipo`
+-- Dumping data for table `usuarios_tipo`
 --
 
 INSERT INTO `usuarios_tipo` (`tipo_id`, `tipo_descripcion`) VALUES
@@ -251,17 +245,17 @@ INSERT INTO `usuarios_tipo` (`tipo_id`, `tipo_descripcion`) VALUES
 (3, 'profesional');
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `pacientes`
+-- Constraints for table `pacientes`
 --
 ALTER TABLE `pacientes`
   ADD CONSTRAINT `FK_persona_cobertura` FOREIGN KEY (`cobertura`) REFERENCES `coberturas` (`id`);
 
 --
--- Filtros para la tabla `usuarios`
+-- Constraints for table `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD CONSTRAINT `fk_usuario_tipo` FOREIGN KEY (`usr_tipo`) REFERENCES `usuarios_tipo` (`tipo_id`);

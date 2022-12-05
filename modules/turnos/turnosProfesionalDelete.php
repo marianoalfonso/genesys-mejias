@@ -20,6 +20,8 @@
     integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" 
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!-- CSS personalizado --> 
+    <link rel="stylesheet" href="turnosProfesionalDelete.css">  
 
 </head>
 <body>
@@ -43,39 +45,40 @@
             $turnoDesde =substr($row['start'],0,10)." ( ".substr($row['start'],11,8)." - ".substr($row['end'],11,8);
         }
     ?>
+    <div class="container caja">
+        <div class="container d-flex justify-content-center">
+            <form action="./turnosProfesionalCrud_.php" method="post" style="width: 50vw; min-width: 300px;">
+                <div class="row">
+                    <div class="form-group mb-3">
 
-    <div class="container d-flex justify-content-center">
-        <form action="./turnosProfesionalCrud_.php" method="post" style="width: 50vw; min-width: 300px;">
-            <div class="row">
-                <div class="form-group mb-3">
+                        <!-- id -->
+                        <div class="col">
+                            <label class="form-label">id</label>
+                            <input type="number" class="form-control" name="id" value="<?php echo $id; ?>" readonly>
+                        </div>
 
-                    <!-- id -->
-                    <div class="col">
-                        <label class="form-label">id</label>
-                        <input type="number" class="form-control" name="id" value="<?php echo $id; ?>" readonly>
+                        <!-- apellido y nombre -->
+                        <div class="col">
+                            <label class="form-label">apellido</label>
+                            <input type="text" class="form-control" name="title" value="<?php echo $title ?>" readonly>
+                        </div>
+
+                        <!-- turno desde-->
+                        <div class="col">
+                            <label class="form-label">turno asignado</label>
+                            <input type="text" class="form-control" name="turnoDesde" value="<?php echo $turnoDesde ?> )" readonly>
+                        </div>
+
                     </div>
 
-                    <!-- apellido y nombre -->
-                    <div class="col">
-                        <label class="form-label">apellido</label>
-                        <input type="text" class="form-control" name="title" value="<?php echo $title ?>" readonly>
-                    </div>
-
-                    <!-- turno desde-->
-                    <div class="col">
-                        <label class="form-label">turno asignado</label>
-                        <input type="text" class="form-control" name="turnoDesde" value="<?php echo $turnoDesde ?> )" readonly>
+                    <div>
+                        <input type="submit" class="btn btn-warning" name="submit" value="borrar"></button>
+                        <a href="./turnosProfesional.php" class="btn btn-danger">cancelar</a>
                     </div>
 
                 </div>
-
-                <div>
-                    <input type="submit" class="btn btn-warning" name="submit" value="borrar"></button>
-                    <a href="./turnosProfesional.php" class="btn btn-danger">cancelar</a>
-                </div>
-
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 
 

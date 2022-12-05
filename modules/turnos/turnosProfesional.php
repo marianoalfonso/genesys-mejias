@@ -54,7 +54,15 @@
                 <!-- <a href="#" class="btn btn-warning" disabled><img src="../../assets/icons/agregar-usuario.png" />  agregar turno</a> -->
                 <a href="../calendarios/test.php" class="btn btn-warning" disabled><img src="../../assets/icons/lista.png" />  prox. turnos disp.</a>
                 <a href="../calendarios/calendario.php?p=<?php echo $idProfesional ?>" class="btn btn-warning" disabled><img src="../../assets/icons/calendario.png" />  ver calendario</a>
-                </div>
+            </div>
+            <div class="error">
+                <?php
+                    if(isset($_SESSION['error'])) { ?>
+                        <h3><?php echo $_SESSION['error']; ?></h3>
+                        <?php unset($_SESSION['error']);
+                    }
+                ?>
+            </div>
         </div>
     </div>
 
@@ -115,8 +123,8 @@
                                     <td><?php echo $hasta ?></td>
                                     <td><?php echo $estado ?></td>
                                     <td><a href="./turnosProfesionalClose.php?idTurno=<?php echo $idTurno ?>"><img src="../../assets/icons/cerrar.png" alt="cerrar"></a></td>
-                                    <td><a href="./turnosEdit.php?id=<?php echo $idTurno ?>"><img src="../../assets/icons/editar.png" alt="modificar"></a></td>
-                                    <td><a href="./turnosDelete.php?id=<?php echo $idTurno ?>"><img src="../../assets/icons/borrar.png" alt="borrar"></a></td>
+                                    <td><a href="#"><img src="../../assets/icons/editar.png" alt="modificar"></a></td>
+                                    <td><a href="./turnosProfesionalDelete.php?id=<?php echo $idTurno ?>"><img src="../../assets/icons/borrar.png" alt="borrar"></a></td>
                                 </tr>
                             <?php }?>    
 
