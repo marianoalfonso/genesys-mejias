@@ -143,6 +143,7 @@
             // control del evento click sobre el boton AGREGAR
             $('#botonAgregar').click(function(){
                 let registro = recuperarDatosFormulario();
+                validarEvento(registro);
                 agregarRegistro(registro);
                 $('#formularioEventos').modal('hide');
             });
@@ -155,6 +156,15 @@
                 $('#informacionEvento').modal('hide');
             })
 
+            function validarEvento(registro) {
+                registro.preventDefault();
+                var paciente = document.getElementById('titulo');
+                if(paciente == '') {
+                    alert('el campo paciente no puede estar vacio');
+                    return;
+                }
+                alert('fuera del if');
+            }
 
             //funcion ajax para dar de alta el registro
             function agregarRegistro(registro) {
