@@ -26,36 +26,44 @@
                   </div>
                 </div>
                 
-                <div class="form-row">
+                <div class="row">
                   <!-- fecha inicio -->
-                  <div class="form-group col-md-6">
-                    <label for="">fecha de inicio:</label>
-                    <div class="input-group" data-autoclose="true">
-                      <input type="date" id="infoFechaInicio" class="form-control" value="">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="">fecha de inicio:</label>
+                      <div class="input-group" data-autoclose="true">
+                        <input type="date" id="infoFechaInicio" class="form-control" value="">
+                      </div>
                     </div>
                   </div>
                   <!-- hora inicio -->
-                  <div class="form-group col-md-6" id="tituloHoraInicio">
-                    <label for="">hora de inicio</label>
-                    <div class="input-group clockpicker" data-autoclose="true">
-                      <input type="text" id="infoHoraInicio" class="form-control" autocomplete="off">
+                  <div class="col-md-6" id="tituloHoraInicio">
+                    <div class="form-group">
+                      <label for="">hora de inicio</label>
+                      <div class="input-group clockpicker" data-autoclose="true">
+                        <input type="text" id="infoHoraInicio" class="form-control" autocomplete="off">
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <div class="form-row">
+                <div class="row">
                   <!-- fecha fin -->
-                  <div class="form-group col-md-6">
-                    <label for="">fecha de fin:</label>
-                    <div class="input-group" data-autoclose="true">
-                      <input type="date" id="infoFechaFin" class="form-control" value="">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="">fecha de fin:</label>
+                      <div class="input-group" data-autoclose="true">
+                        <input type="date" id="infoFechaFin" class="form-control" value="">
+                      </div>
                     </div>
                   </div>
                   <!-- hora fin -->
-                  <div class="form-group col-md-6" id="tituloHoraFin">
-                    <label for="">hora de fin</label>
-                    <div class="input-group clockpicker" data-autoclose="true">
-                      <input type="text" id="infoHoraFin" class="form-control" autocomplete="off">
+                  <div class="col-md-6" id="tituloHoraFin">
+                    <div class="form-group">
+                      <label for="">hora de fin</label>
+                      <div class="input-group clockpicker" data-autoclose="true">
+                        <input type="text" id="infoHoraFin" class="form-control" autocomplete="off">
+                      </div>
                     </div>
                   </div>
                 </div>
