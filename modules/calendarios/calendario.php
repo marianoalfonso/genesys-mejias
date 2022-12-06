@@ -113,10 +113,8 @@
                     
                     //recuperamos informacion
                     $("#id").val(info.event.id);
-
-                    // $("#infoTitulo").val(info.event.titulo);
-                    $("#infoTitulo").val(info.event.dni);
-
+                    //recupero nombre del paciente
+                    $("#infoTitulo").val(info.event.title);
                     //las fechas/horas las recuperamos directamente desde el calendario, no de la DB
                     $("#infoFechaInicio").val(moment(info.event.start).format("YYYY-MM-DD"));
                     //el formato para los minutos debe ser minuscula (mm)
@@ -143,9 +141,11 @@
             // control del evento click sobre el boton AGREGAR
             $('#botonAgregar').click(function(){
                 let registro = recuperarDatosFormulario();
-                validarEvento(registro);
-                agregarRegistro(registro);
-                $('#formularioEventos').modal('hide');
+                let validado = validarEvento(registro);
+                if(validado){ //si las validaciones estan correctas, se agrega el turno
+                    agregarRegistro(registro);
+                    $('#formularioEventos').modal('hide');
+                }
             });
 
             // control del evento click sobre el boton BORRAR
@@ -156,14 +156,52 @@
                 $('#informacionEvento').modal('hide');
             })
 
+            // valido el registro del turno para ver si puede grabarse
             function validarEvento(registro) {
-                registro.preventDefault();
-                var paciente = document.getElementById('titulo');
+                var estado = true;
+                var paciente = registro.titulo;
+                var fechaDesde = registro.inicio;
+                var fechaHasta = registro.fin;
+                console.log(fechaDesde);
+                console.log(fechaHasta);
+                // var horaDesde = fechaDesde.substring(11,16);
+                // var horaHasta = fechaHasta.substring(11,16);
+                
+                // obtengo fecha actual
+                let date = new Date();
+                let day = `${(date.getDate())}`.padStart(2,'0');
+                let month = `${(date.getMonth()+1)}`.padStart(2,'0');
+                let year = date.getFullYear();
+                let hora = `${(date.getHours())}`;
+                let minuto = `${(date.getMinutes())}`;
+                let fechaHoraActual = `${year}-${month}-${day} ${hora}:${minuto}`;
+                // console.log(`${year}-${month}-${day} ${hora}:${minuto}`);
+                
+                // valido que no se asigne un turno anterior a ahora
+                if(fechaDesde < fechaHoraActual) {
+                    alert('no puede asignarse un turno anterior');
+                    estado = false;
+                }
+
+                // valido que no este vacia la seleccion de paciente
                 if(paciente == '') {
                     alert('el campo paciente no puede estar vacio');
-                    return;
+                    estado = false;
                 }
-                alert('fuera del if');
+                
+                // valido que la fecha desde y fecha hasta sean iguales (mismo dia)
+                if(fechaDesde != fechaHasta){
+                    alert('la fecha/hora desde y hasta del turno deben ser iguales')
+                    estado = false;
+                }
+
+                // valido que la hora hasta no sea menor a la hora desde
+                // if(horaHasta < horaDesde){
+                //     alert('la hora de finalizacion del turno no puede ser menor a la de inicio');
+                //     estado = false;                  
+                // }
+
+                return estado;
             }
 
             //funcion ajax para dar de alta el registro
@@ -236,7 +274,6 @@
                 // alert('fin ' + registro.fin);
                 // alert('color fondo ' + registro.colorFondo);
                 // alert('color texto ' + registro.colorTexto);
-
 
                 return registro;
                 }

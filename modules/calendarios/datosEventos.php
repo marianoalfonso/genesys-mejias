@@ -51,15 +51,15 @@ switch ($_GET['accion']) {
 
     case 'modificar':
         $sql = "update
-                        turnos set
-                            title = '$_POST[titulo]',
-                            description = '$_POST[descripcion]',
-                            start = '$_POST[inicio]',
-                            end = '$_POST[fin]',
-                            textColor = '$_POST[colorFondo]',
-                            backgroundColor = '$_POST[colorTexto]'
-                        where
-                            id = $_POST[id]";
+                turnos set
+                    title = '$_POST[titulo]',
+                    description = '$_POST[descripcion]',
+                    start = '$_POST[inicio]',
+                    end = '$_POST[fin]',
+                    textColor = '$_POST[colorFondo]',
+                    backgroundColor = '$_POST[colorTexto]'
+                where
+                    id = $_POST[id]";
         $p = db::conectar()->prepare($sql);
         $p->execute();
         echo json_encode($p);

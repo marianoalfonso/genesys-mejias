@@ -22,9 +22,10 @@
                 <div class="form-row">
                   <div class="form-group col-md-12">
                     <label for="">seleccione paciente</label>
-                    <input type="text" id="infoTitulo" class="form-control" placeholder="hola">
+                    <input type="text" id="infoTitulo" class="form-control" value="">
                   </div>
                 </div>
+                
                 <div class="form-row">
                   <!-- fecha inicio -->
                   <div class="form-group col-md-6">
