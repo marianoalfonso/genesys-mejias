@@ -33,7 +33,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-light border-3 border-bottom border-primary">
             <!-- container-fluid (ocupa todo el ancho disponible) -->
             <div class="container-fluid">
-                <a href="#" class="navbar-brand">MEJIAS</a>
+                <a href="#" class="navbar-brand">MEGIAS</a>
                 <!-- navbar-toggler (alterna entre estado visible o no) -->
                 <!-- data-bs-toggle (propiedad a alternar) -->
                 <!-- data-bs-target (cual es el elemento objetivo del toggle) -->
