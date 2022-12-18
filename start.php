@@ -38,5 +38,13 @@
   
     echo "<br>fecha: ".date('Y/m/d');
 ?>
+<hr><hr>
+<?php
+    echo 'ejecutando funcion obtenerProximoDni<br>';
+    require_once('./assets/functions/date.php');
+    $existe = obtenerProximoDni();
+    echo $existe;
+
+?>
 
 

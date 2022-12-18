@@ -1,5 +1,7 @@
 <?php
     require_once('../db/dbConnection.php');
+    require_once('../../assets/functions/date.php');
+
     session_start();
     $_SESSION['action'] = "add";
 ?>
@@ -49,7 +51,8 @@
                     <!-- dni -->
                     <div class="col">
                         <label class="form-label">dni</label>
-                        <input type="number" class="form-control" name="dni">
+                        <input type="number" class="form-control" name="dni" value="<?php echo obtenerProximoDni(); ?>">
+                        
                     </div>                
                     <!-- fecha nacimiento -->
                     <div class="col">
