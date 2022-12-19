@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 16-12-2022 a las 12:26:04
+-- Tiempo de generación: 19-12-2022 a las 12:21:17
 -- Versión del servidor: 8.0.21
 -- Versión de PHP: 7.4.9
 
@@ -20,6 +20,20 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `mejias`
 --
+
+DELIMITER $$
+--
+-- Funciones
+--
+DROP FUNCTION IF EXISTS `obtenerDni`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `obtenerDni` () RETURNS INT BEGIN
+	DECLARE proximoDni int;
+    update config set progresionDni = progresionDni + 1;
+	select progresionDni into proximoDni from config;
+	return proximoDni;
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -43,6 +57,24 @@ INSERT INTO `coberturas` (`id`, `nombre`) VALUES
 (2, 'Osde 310'),
 (3, 'Osde 410'),
 (4, 'Osde 510');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `config`
+--
+
+DROP TABLE IF EXISTS `config`;
+CREATE TABLE IF NOT EXISTS `config` (
+  `progresionDNI` int NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `config`
+--
+
+INSERT INTO `config` (`progresionDNI`) VALUES
+(11111153);
 
 -- --------------------------------------------------------
 
@@ -113,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `pacientes` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `dni_UNIQUE` (`dni`),
   KEY `FK_persona_cobertura_idx` (`cobertura`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `pacientes`
@@ -126,7 +158,9 @@ INSERT INTO `pacientes` (`id`, `apellido`, `nombre`, `dni`, `fec_nac`, `cobertur
 (8, 'Messi', 'Lionel', 27433223, '1992-05-03', 4, '223444543', '023-44535246', 'arco del triunfo 3425', 'deportista profesional', '170000'),
 (9, 'Luter', 'Laureano', 12887663, '1957-02-04', 2, '4443221114', '011-44536556', 'olleros 1233', 'jubilado', '50000'),
 (12, 'Eleno', 'Mariel', 22332445, '1972-09-05', 2, '223454443564', '011-55211125', 'Superi 2342', 'peluquera', '0'),
-(13, 'Brown', 'Lorena', 87658658, '1984-08-10', 2, '8675865875', '01187658765', 'cramer 234', 'docente', '0');
+(13, 'Brown', 'Lorena', 87658658, '1984-08-10', 2, '8675865875', '01187658765', 'cramer 234', 'docente', '0'),
+(14, 'Olaguer', 'Rita', 34554334, '0000-00-00', 1, '', '', '', '', '0'),
+(15, 'Di Maria', 'Angel', 11111152, '1987-02-10', 1, '', '', '', '', '0');
 
 -- --------------------------------------------------------
 
