@@ -17,8 +17,11 @@
 
                 <input type="hidden" name="dni" id="dni" value="<?php echo $_GET['dni']; ?>">
 
-                <label for="importe" class="form-label"></label>
+                <label for="importe" class="form-label">importe</label>
                 <input type="number" name="saldo" id="saldo" class="form-control" required>
+
+                <label for="descripcion" class="form-label">descripcion</label>
+                <input type="text" name="descripcion" id="descripcion" class="form-control" required>
 
             </div>
 

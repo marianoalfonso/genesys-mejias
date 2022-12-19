@@ -41,6 +41,7 @@
             $apellido = $result[0]['apellido'];
             $nombre = $result[0]['nombre'];
             $dni = $result[0]['dni'];
+            $_SESSION['dniOriginal'] = $result[0]['dni'];
             $fec_nac = $result[0]['fec_nac'];
             $cobertura = $result[0]['cobertura'];
             $numero = $result[0]['numero'];

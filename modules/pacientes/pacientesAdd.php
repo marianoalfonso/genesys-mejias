@@ -55,9 +55,10 @@
                         
                     </div>                
                     <!-- fecha nacimiento -->
+                    <?php $dt = new DateTime(); ?>
                     <div class="col">
                         <label class="form-label">fec.nacimiento</label>
-                        <input type="date" class="form-control" name="fec_nac">
+                        <input type="date" class="form-control" name="fec_nac" value="<?php echo $dt->format('Y-m-d') ?>">
                     </div>
                 </div>
 

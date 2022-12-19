@@ -63,13 +63,6 @@
                 $origenCierre = $_SESSION['origenCierreTurno'];
                 $fechaTurno = substr($_POST['turnoDesde'], 0, 10);
 
-            // if ($fechaTurno <= date('Y-m-d')) {
-            //     echo 'el turno PUEDE BORRARSE';
-            // } else {
-            //     echo 'el turno NO PUEDE BORRARSE';
-            // }
-            // die();
-
                 if($fechaTurno <= date('Y-m-d')){
                     $dni = $_POST['dni'];
                     $idTurno = $_POST['idTurno'];
@@ -99,8 +92,8 @@
                             //hacer el insert en la tabla de log de pagos
                             $sql = "insert into CUENTACORRIENTELOG (`ctacte_dni`,
                             `ctacte_idTurno`,`ctacte_idProfesional`,`ctaCte_fecha`,
-                            `ctaCte_importePago`,`ctacte_importeSaldo`) 
-                            values (:dni, :idTurno, :idProfesional, :fecha, :impPago, :impSaldo)";
+                            `ctaCte_importePago`,`ctacte_importeSaldo`,`ctacte_descripcion`) 
+                            values (:dni, :idTurno, :idProfesional, :fecha, :impPago, :impSaldo, :descripcion)";  //REVISAR, CAMPO AGREGADO
                             $p = db::conectar()->prepare($sql);
                             $p->bindValue(':dni', $dni);
                             $p->bindValue(':idTurno', $idTurno);
@@ -108,6 +101,7 @@
                             $p->bindValue(':fecha', $fechaCierre);
                             $p->bindValue(':impPago', $impPago);
                             $p->bindValue(':impSaldo', $impSaldo);
+                            $p->bindValue(':descripcion', '');
                             $p->execute();
                             if($p) {
                                 if($origenCierre == "general") {

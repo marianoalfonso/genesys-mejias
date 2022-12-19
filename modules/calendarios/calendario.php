@@ -190,10 +190,10 @@
                 }
                 
                 // valido que la fecha desde y fecha hasta sean iguales (mismo dia)
-                if(fechaDesde != fechaHasta){
-                    alert('la fecha/hora desde y hasta del turno deben ser iguales')
-                    estado = false;
-                }
+                // if(fechaDesde != fechaHasta){
+                //     alert('la fecha/hora desde y hasta del turno deben ser iguales')
+                //     estado = false;
+                // }
 
                 // valido que la hora hasta no sea menor a la hora desde
                 // if(horaHasta < horaDesde){

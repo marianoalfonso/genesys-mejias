@@ -84,21 +84,38 @@
                     <tbody>       
                         
                     <?php
+                        // $sql = "SELECT
+                        //     concat(pacientes.apellido,', ',pacientes.nombre) as nombre,
+                        //     cuentacorrientelog.ctacte_dni as dni,ctacte_idProfesional as idProfesional,
+                        //     profesionales.prf_nombre as profesional,
+                        //     date_format(ctaCte_fecha, '%d/%m/%Y') as fecha,
+                        //     turnos.description as turno,
+                        //     ctaCte_importePago as pago,ctacte_importeSaldo as saldo,
+                        //     pacientes.saldo as saldoPaciente
+                        //     FROM cuentacorrientelog
+                        //     inner join pacientes ON cuentacorrientelog.ctacte_dni = pacientes.dni
+                        //     inner join profesionales ON cuentacorrientelog.ctacte_idProfesional = profesionales.prf_id
+                        //     left join turnos on cuentacorrientelog.ctacte_idTurno = turnos.id
+                        //     where ctacte_dni = $dni
+                        //     and (ctaCte_importePago <> 0 and ctacte_importeSaldo <> 0)
+                        //     order by ctaCte_fecha";
+
                         $sql = "SELECT
-                            concat(pacientes.apellido,', ',pacientes.nombre) as nombre,
-                            cuentacorrientelog.ctacte_dni as dni,ctacte_idProfesional as idProfesional,
-                            profesionales.prf_nombre as profesional,
-                            date_format(ctaCte_fecha, '%d/%m/%Y') as fecha,
-                            turnos.description as turno,
-                            ctaCte_importePago as pago,ctacte_importeSaldo as saldo,
-                            pacientes.saldo as saldoPaciente
-                            FROM cuentacorrientelog
-                            inner join pacientes ON cuentacorrientelog.ctacte_dni = pacientes.dni
-                            inner join profesionales ON cuentacorrientelog.ctacte_idProfesional = profesionales.prf_id
-                            left join turnos on cuentacorrientelog.ctacte_idTurno = turnos.id
-                            where ctacte_dni = $dni
-                            and (ctaCte_importePago <> 0 and ctacte_importeSaldo <> 0)
-                            order by ctaCte_fecha";
+                                concat(pacientes.apellido,', ',pacientes.nombre) as nombre,
+                                cuentacorrientelog.ctacte_dni as dni,ctacte_idProfesional as idProfesional,
+                                profesionales.prf_nombre as profesional,
+                                date_format(ctaCte_fecha, '%d/%m/%Y') as fecha,
+                                if(isnull(turnos.description),cuentacorrientelog.ctacte_descripcion, turnos.description) as turno,
+                                ctaCte_importePago as pago,ctacte_importeSaldo as saldo,
+                                pacientes.saldo as saldoPaciente
+                                FROM cuentacorrientelog
+                                inner join pacientes ON cuentacorrientelog.ctacte_dni = pacientes.dni
+                                left join profesionales ON cuentacorrientelog.ctacte_idProfesional = profesionales.prf_id
+                                left join turnos on cuentacorrientelog.ctacte_idTurno = turnos.id
+                                where ctacte_dni = $dni
+                                order by ctaCte_fecha";
+                                // and (ctaCte_importePago <> 0 and ctacte_importeSaldo <> 0)
+                                // order by ctaCte_fecha";
 
                         $resultado = db::conectar()->prepare($sql);
                         $resultado->execute();        

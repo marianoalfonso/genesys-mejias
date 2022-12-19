@@ -66,7 +66,6 @@
                                 <th></th>
                                 <th></th>
                                 <th></th>
-                                <th></th>
                             </tr>
                         </thead>
                         <tbody>       
@@ -96,7 +95,6 @@
                                 <td><a href="pacientesTurnos.php?dni=<?php echo $row['dni'] ?>"><img src="../../assets/icons/lista.png" alt="turnos"></a></td>
                                 <td><a href="./pacientesEdit.php?id=<?php echo $row['id'] ?>"><img src="../../assets/icons/editar.png" alt="modificar"></a></td>
                                 <td><a href="./pacientesDelete.php?id=<?php echo $row['id'] ?>"><img src="../../assets/icons/borrar.png" alt="borrar"></a></td>
-                                <td><a href="./pacientesCambioDni.php?id=<?php echo $row['id'] ?>"><img src="../../assets/icons/change.png" alt="borrar"></a></td>
                             </tr>
                             <?php } ?>
 

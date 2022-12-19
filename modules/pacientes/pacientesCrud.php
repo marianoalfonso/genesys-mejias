@@ -2,6 +2,7 @@
     require('../db/dbConnection.php');
     session_start();
     $accion = $_SESSION['action'];
+    $dniOriginal = $_SESSION['dniOriginal'];
     // $id = $_POST['id'];
 
     
@@ -50,6 +51,14 @@
                             `profesion`='$profesion' WHERE id=$id";
                     $p = db::conectar()->prepare($sql);
                     $p->execute();
+                    // si el dni fue actualizado, elecuto el SP para cambiarlo en todas las tablas
+                    if($dniOriginal != $dni) {
+                        $sql = 'CALL cambiarDni (?, ?)';
+                        $s = db::conectar()->prepare($sql);
+                        $s->bindParam(1, $dniOriginal, PDO::PARAM_INT, 10);
+                        $s->bindParam(2, $dni, PDO::PARAM_INT, 10);
+                        $s->execute();
+                    }
                     header ("Location: ./pacientes.php");
                 } catch (PDOException $error1) {
                     echo $error1->getMessage();

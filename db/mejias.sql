@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `coberturas` (
   `id` tinyint NOT NULL,
   `nombre` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Volcado de datos para la tabla `coberturas`
@@ -67,7 +67,7 @@ INSERT INTO `coberturas` (`id`, `nombre`) VALUES
 DROP TABLE IF EXISTS `config`;
 CREATE TABLE IF NOT EXISTS `config` (
   `progresionDNI` int NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Volcado de datos para la tabla `config`
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `cuentacorrientelog` (
   `ctaCte_fecha` date NOT NULL,
   `ctaCte_importePago` decimal(10,0) NOT NULL,
   `ctacte_importeSaldo` decimal(10,0) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Volcado de datos para la tabla `cuentacorrientelog`
@@ -145,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `pacientes` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `dni_UNIQUE` (`dni`),
   KEY `FK_persona_cobertura_idx` (`cobertura`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Volcado de datos para la tabla `pacientes`
@@ -174,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `profesionales` (
   `prf_nombre` varchar(60) NOT NULL,
   `prf_bloqueo` int DEFAULT NULL COMMENT 'dni del profesional que tiene bloqueada la agenda',
   PRIMARY KEY (`prf_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Volcado de datos para la tabla `profesionales`
@@ -205,7 +205,7 @@ CREATE TABLE IF NOT EXISTS `profesionaleshorarios` (
   `viernesDesde` time NOT NULL DEFAULT '08:00:00',
   `viernesHasta` time NOT NULL DEFAULT '19:00:00',
   PRIMARY KEY (`idProfesional`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Volcado de datos para la tabla `profesionaleshorarios`
@@ -225,12 +225,12 @@ CREATE TABLE IF NOT EXISTS `turnos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `profesional` int NOT NULL,
   `dni` int NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `title` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4,
   `start` datetime DEFAULT NULL,
   `end` datetime DEFAULT NULL,
-  `textColor` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `backgroundColor` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `textColor` varchar(7) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `backgroundColor` varchar(7) CHARACTER SET utf8mb4 DEFAULT NULL,
   `estado` char(3) DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=latin1;
@@ -294,7 +294,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `usr_tipo` tinyint NOT NULL,
   PRIMARY KEY (`usr_dni`),
   KEY `fk_usuario_tipo_idx` (`usr_tipo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -314,7 +314,7 @@ CREATE TABLE IF NOT EXISTS `usuarios_tipo` (
   `tipo_id` tinyint NOT NULL,
   `tipo_descripcion` varchar(45) NOT NULL,
   PRIMARY KEY (`tipo_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Volcado de datos para la tabla `usuarios_tipo`
