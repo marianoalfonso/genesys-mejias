@@ -82,6 +82,8 @@
                     <?php
                         // require_once("../db/dbConnection.php");
                         // $dni = $_GET['dni'];
+                        $fechaHoy = date('d-m-Y');
+
                         $sql = "select 
                         turnos.id,turnos.profesional as idProf,profesionales.prf_nombre as profesional, 
                         turnos.dni,turnos.title as nombre,turnos.description as tratamiento,
@@ -96,9 +98,9 @@
                         $data = $resultado->fetchAll(PDO::FETCH_ASSOC);
                         foreach($data as $row) {
                     ?>
-                            <td><a href="../calendarios/calendario.php?p=<?php echo $row['idProf'] ?>&nombre=<?php echo $row['profesional'] ?>"><img src="../../assets/icons/calendario.png" alt="calendario"></a><?php echo "  ".$row['profesional']; ?></td>
+                            <td><a href="../calendarios/calendario.php?p=<?php echo $row['idProf'] ?>&nombre=<?php echo $row['profesional'] ?>&fecha=<?php echo $fechaHoy ?>"><img src="../../assets/icons/calendario.png" alt="calendario"></a><?php echo "  ".$row['profesional']; ?></td>
                             <td><?php echo $row['tratamiento']; ?></td>
-                            <td><a href="../calendarios/calendario.php?p=<?php echo $row['idProf'] ?>&nombre=<?php echo $row['profesional'] ?>"><img src="../../assets/icons/calendario.png" alt="calendario"></a><?php echo "  ".$row['fecha']; ?></td>
+                            <td><a href="../calendarios/calendario.php?p=<?php echo $row['idProf'] ?>&nombre=<?php echo $row['profesional'] ?>&fecha=<?php echo $row['fecha']; ?>"><img src="../../assets/icons/calendario.png" alt="calendario"></a><?php echo "  ".$row['fecha']; ?></td>
                             <!-- <td><?php //echo $row['fecha']; ?></td> -->
                             <td><?php 
                                 switch ($row['estado']){

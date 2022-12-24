@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="./fullcalendar/main.css" >
 
 
-  <!-- full calendar -->   
+  <!-- full calendar -->
   <script src="js/jquery-3.6.1.min.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -51,7 +51,7 @@
         $nombre_profesional = $_GET['nombre'];
     ?>
     <h3>profesional: <?php echo $nombre_profesional ?></h3>
-    
+
     <!-- definicion del calendario -->
     <div class="container">
         <!-- <div class="col-md-11 offset-md-2"> -->
@@ -63,6 +63,10 @@
     <script>
 
         var value = getParameterByName('p');
+        // obtengo la fecha desde el parametro GET
+        var fecha = getParameterByName('fecha');
+        // convierto el formato desde dd-mm-yyyy a yyyy-mm-dd
+        var fecha2 = fecha.substring(6,10) + '-' + fecha.substring(3,5) + '-' + fecha.substring(0,2);
         var consultaListado = 'datosEventos.php?accion=listar&p=' + value
 
         // https://stackoverflow.com/questions/69136421/remove-or-hide-a-specific-date-in-fullcalendar-v5
@@ -110,7 +114,7 @@
                     //seteamos botones a mostrar
                     $('#botonAgregar').hide();
                     $('#botonBorrar').show();
-                    
+
                     //recuperamos informacion
                     $("#id").val(info.event.id);
                     //recupero nombre del paciente
@@ -124,7 +128,7 @@
                     //el formato para los minutos debe ser minuscula (mm)
                     $("#infoHoraFin").val(moment(info.event.end).format("HH:mm"));
                     //extendedProps (porque tiene mas de 1 linea)
-                    $("#infoDescripcion").val(info.event.extendedProps.description);  
+                    $("#infoDescripcion").val(info.event.extendedProps.description);
                     $("#infoColorFondo").val(info.event.backgroundColor);
                     $("#infoColorTexto").val(info.event.textColor);
                     //mostramos el formulario
@@ -135,7 +139,7 @@
             calendar.render();
 
             // abre una fecha especifica
-            // calendar.gotoDate("2015-10-05");
+            calendar.gotoDate(fecha2);
 
             //eventos de botones de la aplicacion
             // control del evento click sobre el boton AGREGAR
@@ -166,7 +170,7 @@
                 console.log(fechaHasta);
                 // var horaDesde = fechaDesde.substring(11,16);
                 // var horaHasta = fechaHasta.substring(11,16);
-                
+
                 // obtengo fecha actual
                 let date = new Date();
                 let day = `${(date.getDate())}`.padStart(2,'0');
@@ -176,7 +180,7 @@
                 let minuto = `${(date.getMinutes())}`;
                 let fechaHoraActual = `${year}-${month}-${day} ${hora}:${minuto}`;
                 // console.log(`${year}-${month}-${day} ${hora}:${minuto}`);
-                
+
                 // valido que no se asigne un turno anterior a ahora
                 if(fechaDesde < fechaHoraActual) {
                     alert('no puede asignarse un turno anterior');
@@ -188,7 +192,7 @@
                     alert('el campo paciente no puede estar vacio');
                     estado = false;
                 }
-                
+
                 // valido que la fecha desde y fecha hasta sean iguales (mismo dia)
                 // if(fechaDesde != fechaHasta){
                 //     alert('la fecha/hora desde y hasta del turno deben ser iguales')
@@ -198,7 +202,7 @@
                 // valido que la hora hasta no sea menor a la hora desde
                 // if(horaHasta < horaDesde){
                 //     alert('la hora de finalizacion del turno no puede ser menor a la de inicio');
-                //     estado = false;                  
+                //     estado = false;
                 // }
 
                 return estado;
@@ -231,7 +235,7 @@
                 error: function(error){
                     alert('se produjo un error al borrar el evento :' + error);
                 }
-                })         
+                })
             }
 
             //funciones que interactuan con el formulario de eventos
@@ -243,8 +247,8 @@
             $('#fechaFin').val('');
             $('#horaInicio').val('');
             $('#horaFin').val('');
-            $('#colorFondo').val('#3788D8'); 
-            $('#colorTexto').val('#FFFFFF'); 
+            $('#colorFondo').val('#3788D8');
+            $('#colorTexto').val('#FFFFFF');
             $('#botonAgregar').show();
             $('#botonModificar').hide();
             $('#botonBorrar').hide();
@@ -288,7 +292,7 @@
             }
         </script>
 
-    <script type="text/javascript" src="./calendario.js"></script>  
+    <script type="text/javascript" src="./calendario.js"></script>
 
 </body>
 </html>
