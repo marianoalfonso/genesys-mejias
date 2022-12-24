@@ -1,0 +1,4 @@
+pacientes -> turnos (poder ir directo al dia del turno en el calendario)
+pacientes -> turnos (si no tiene turnos historicos, poder saltar a profesionales para asignar un turno)
+
+pacientes -> ctacte (corregir ingresos, pagos y saldos)

@@ -91,9 +91,10 @@
                                 <td><?php echo $row['socio']; ?></td>
                                 <td><?php echo $row['telefono']; ?></td>
                                 <!-- botones -->
-                                <td><a href="pacientesCtaCte.php?dni=<?php echo $row['dni'] ?>"><img src="../../assets/icons/money.png" alt="cta.cte"></a></td>
                                 <td><a href="pacientesTurnos.php?dni=<?php echo $row['dni'] ?>"><img src="../../assets/icons/lista.png" alt="turnos"></a></td>
                                 <td><a href="./pacientesEdit.php?id=<?php echo $row['id'] ?>"><img src="../../assets/icons/editar.png" alt="modificar"></a></td>
+                                <td><a href="#"><img src="../../assets/icons/money.png" alt="cta.cte"></a></td>
+                                <!-- <td><a href="pacientesCtaCte.php?dni=<?php //echo $row['dni'] ?>"><img src="../../assets/icons/money.png" alt="cta.cte"></a></td> -->
                                 <td><a href="./pacientesDelete.php?id=<?php echo $row['id'] ?>"><img src="../../assets/icons/borrar.png" alt="borrar"></a></td>
                             </tr>
                             <?php } ?>

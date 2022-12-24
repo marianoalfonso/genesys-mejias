@@ -23,7 +23,9 @@
                     ('$apellido','$nombre','$dni','$fec_nac','$cobertura','$numero','$telefono','$direccion','$profesion')";
                     $p = db::conectar()->prepare($sql);
                     $p->execute();
-                    header ("Location: ./pacientes.php");
+                    // al hacer el alta de un nuevo paciente, lo direccionamos automaticamente a la lista de profesionales
+                    // para seleccinar una agenda y dar de alta un turno
+                    header ("Location: ../profesionales/profesionales.php");
                 } catch (PDOException $error1) {
                     echo $error1->getMessage();
                 } catch (Exception $error1) {

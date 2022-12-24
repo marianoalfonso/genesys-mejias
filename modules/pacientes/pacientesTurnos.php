@@ -98,7 +98,8 @@
                     ?>
                             <td><a href="../calendarios/calendario.php?p=<?php echo $row['idProf'] ?>&nombre=<?php echo $row['profesional'] ?>"><img src="../../assets/icons/calendario.png" alt="calendario"></a><?php echo "  ".$row['profesional']; ?></td>
                             <td><?php echo $row['tratamiento']; ?></td>
-                            <td><?php echo $row['fecha']; ?></td>
+                            <td><a href="../calendarios/calendario.php?p=<?php echo $row['idProf'] ?>&nombre=<?php echo $row['profesional'] ?>"><img src="../../assets/icons/calendario.png" alt="calendario"></a><?php echo "  ".$row['fecha']; ?></td>
+                            <!-- <td><?php //echo $row['fecha']; ?></td> -->
                             <td><?php 
                                 switch ($row['estado']){
                                     case 'pre':

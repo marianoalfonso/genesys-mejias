@@ -25,13 +25,7 @@
 
     <?php require_once('../../assets/pages/navBar.php'); ?>
 
-    <div class="container">
-        <div class="form-group">
-            <br/>
-                <a href="profesionalesAdd.php" class="btn btn-warning" disabled>agregar profesional</a>
-            <br/><br/>
-        </div>
-    </div>
+    <!-- eventualmente ver de habilitar un boton para el abm de profesionales -->
 
     <div class="container caja">
         <div class="row">

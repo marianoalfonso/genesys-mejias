@@ -1,0 +1,9 @@
+PACIENTES
+
+. al dar de alta un nuevo paciente, el sistema redirige automaticamente al listado de profesionales para poder seleccionar
+la agenda de uno de ellos y asignar un nuevo turno
+
+. desde el listado de turnos de un paciente, podemos acceder a la agenda del profesional mediante el icono de agenda a lado del nombre del mismo.
+. desde este mismo lugar, podemos ir al turno seleccionado desde el icono situado al lado de la fecha/hora del turno
+
+PROFESIONALES
