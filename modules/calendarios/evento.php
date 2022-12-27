@@ -13,13 +13,11 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <!-- cabecera -->
-              <div class="modal-header">
-
+              <!-- <div class="modal-header">
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="close">
                   <span aria-hidden="true">x</span>
                 </button>
-
-              </div>
+              </div> -->
               <!-- cuerpo -->
               <div class="modal-body">
                 <input type="hidden" id="id">

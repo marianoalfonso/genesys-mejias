@@ -1,0 +1,63 @@
+html {
+    height: 100%;
+  }
+  
+  body{
+      background-color:#dee2e6;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center center;
+      background-size: 80%;
+    
+  }
+   table.dataTable thead {
+      background: #007bff;
+      color:white;
+  }
+  
+  .caja{
+    border: 1px solid;
+    padding: 5px;
+    box-shadow: 10px 10px 50px 1px #7c7c81;
+    border-radius: 10px;
+  }
+  
+  .container {
+    background-color: #DAFBD0;
+    /* display: flex; */
+    justify-content: center;
+    flex-direction: row;
+  }
+  
+  h3 {
+    font-family: sans-serif;
+    color: red;
+    border-bottom: 1px solid rgb(200, 200, 200);
+  }
+  .error {
+    background-color: black;
+    color: red;
+  }
+
+.cabecera {
+    background-color: yellow;
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid;
+    border-radius: 20px;
+}
+
+.modulo {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.ayuda {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}

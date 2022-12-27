@@ -21,14 +21,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <title>alta de pacientes</title>
-    <link rel="stylesheet" href="./pacientesAdd.css">
+    <!-- <link rel="stylesheet" href="./pacientesAdd.css"> -->
+    <link rel="stylesheet" href="pacientes.css">
 
 </head>
 <body>
-    <nav class="navbar navbar-light justify-content-center fs-3 mb-5" style="background-color: #00FF5573";>
+    <!-- <nav class="navbar navbar-light justify-content-center fs-3 mb-5" style="background-color: #00FF5573";>
         alta de pacientes
-    </nav>
+    </nav> -->
 
+    <div class="container modulo">
+        <div class="titulo">
+            <h5>ALTA DE PACIENTES</h5>
+        </div>       
+    </div>
 
 
     <div class="container d-flex justify-content-center">

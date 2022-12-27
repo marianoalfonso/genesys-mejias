@@ -1,0 +1,14 @@
+body {
+    background-color: rgb(247, 248, 246);
+}
+
+.cabecera {
+    background-color: yellow;
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid;
+    border-radius: 20px;
+    justify-content: center;
+    flex-direction: row;
+}

@@ -15,6 +15,18 @@ body{
     color:white;
 }
 
+.cabecera{
+  justify-content: center;
+  flex-direction: row;
+  background-color: yellow;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.botones {
+  margin-bottom: 10px;
+}
+
 .caja{
   border: 1px solid;
   padding: 5px;
@@ -22,9 +34,9 @@ body{
   border-radius: 10px;
 }
 
-.container {
-  background-color: #DAFBD0;
-  /* display: flex; */
+.profesional {
+  margin-top: 10px;
+  display: flex;
   justify-content: center;
   flex-direction: row;
 }

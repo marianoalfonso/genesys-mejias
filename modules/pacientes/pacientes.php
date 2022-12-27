@@ -28,7 +28,7 @@
     <?php require_once("../../assets/pages/navBar.php"); ?>
     <?php require_once("../../assets/functions/date.php"); ?>
 
-    <div class="container">
+    <div class="container cabecera">
         <div class="form-group">
             <div class="row">
                 <div class="col-md-12">

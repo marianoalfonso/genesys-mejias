@@ -19,8 +19,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
 
     <!-- CSS personalizado --> 
-    <link rel="stylesheet" href="pacientesCtaCte.css">  
-    <!-- <link rel="stylesheet" href="pacientes.css">   -->
+    <!-- <link rel="stylesheet" href="pacientesCtaCte.css">   -->
+    <link rel="stylesheet" href="pacientes.css">  
 
 </head>
 <body>
@@ -51,11 +51,18 @@
             
         </div>
     </div> -->
-    <div class="container">
+    <div class="container header">
         <div class="form-group">
             <div class="row">
                 <div class="col-md-12">
-                    <h4>paciente: <?php echo $nombrePaciente; ?></h4>
+                    <div class="paciente">
+                        <h3>paciente: <?php echo $nombrePaciente; ?></h3>
+                    </div>
+                    <div class="volver">
+                        <h3><a href="pacientes.php" class="btn btn-light" alt="back"><img src="../../assets/icons/back.png">  volver</a></h3>
+                    </div>
+                </div>
+                <div class="col-md-12">
                     <h5>listado de turnos ordenados desde el mas reciente</h5>
                 </div>
             </div>
@@ -100,7 +107,7 @@
                     ?>
                             <td><a href="../calendarios/calendario.php?p=<?php echo $row['idProf'] ?>&nombre=<?php echo $row['profesional'] ?>&fecha=<?php echo $fechaHoy ?>"><img src="../../assets/icons/calendario.png" alt="calendario"></a><?php echo "  ".$row['profesional']; ?></td>
                             <td><?php echo $row['tratamiento']; ?></td>
-                            <td><a href="../calendarios/calendario.php?p=<?php echo $row['idProf'] ?>&nombre=<?php echo $row['profesional'] ?>&fecha=<?php echo $row['fecha']; ?>"><img src="../../assets/icons/calendario.png" alt="calendario"></a><?php echo "  ".$row['fecha']; ?></td>
+                            <td><a href="../calendarios/calendario.php?p=<?php echo $row['idProf'] ?>&nombre=<?php echo $row['profesional'] ?>&fecha=<?php echo $row['fecha']; ?>"><img src="../../assets/icons/go.png" alt="calendario"></a><?php echo "  ".$row['fecha']; ?></td>
                             <!-- <td><?php //echo $row['fecha']; ?></td> -->
                             <td><?php 
                                 switch ($row['estado']){

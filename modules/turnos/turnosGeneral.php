@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
 
     <!-- CSS personalizado --> 
-    <link rel="stylesheet" href="turnosProfesional.css">  
+    <link rel="stylesheet" href="turnos.css">  
 
 </head>
 <body>
@@ -35,14 +35,16 @@
     ?> 
 
     <!-- <h3>profesional: <?php //echo $nombreProfesional ?></h3> -->
-    <div class="container">
+    <div class="container cabecera">
         <div class="form-group">
-            <div class="col">
-                <h4>listado de todos los turnos / profesional </h4>
+            <div class="modulo">
+                <h4>listado de turnos de todos los profesionales</h4>
+            </div>
+            <div class="ayuda">
+                <h6>(aqui se muestran los turnos de todos los pacientes y todos los profesionales ordenados de hoy a futuro)</h6>
             </div>
             <div class="col">
-                <!-- <a href="#" class="btn btn-warning" disabled><img src="../../assets/icons/agregar-usuario.png" />  agregar turno</a> -->
-                <a href="../calendarios/test.php" class="btn btn-warning" disabled><img src="../../assets/icons/lista.png" />  prox. turnos disp.</a>
+                <!-- <a href="../calendarios/test.php" class="btn btn-warning" disabled><img src="../../assets/icons/lista.png" />  prox. turnos disp.</a> -->
             </div>
             <div class="error">
                 <?php

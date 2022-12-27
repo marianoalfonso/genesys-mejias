@@ -14,20 +14,23 @@
 
     <title>edicion de pacientes</title>
 
-    <link rel="stylesheet" href="./pacientesEdit.css">
+    <!-- <link rel="stylesheet" href="./pacientesEdit.css"> -->
+    <link rel="stylesheet" href="pacientes.css">
 
 </head>
 <body>
     <!-- <nav class="navbar navbar-light justify-content-center fs-3 mb-5" style="background-color: #00FF5573";> -->
-    <nav class="navbar navbar-light justify-content-center fs-3 mb-5" style="background-color: #17a2b8";>
+    <!-- <nav class="navbar navbar-light justify-content-center fs-3 mb-5" style="background-color: #17a2b8";>
         editar paciente
-    </nav>
+    </nav> -->
+
 
     <!-- obtenemos los datos del paciente a editar en base al id recibido por parametro -->
     <?php
-        session_start();
+        // session_start();
         $_SESSION['action'] = "edit";
         require_once('../db/dbConnection.php');
+        require_once("../../assets/pages/navBar.php");
 
         $id = $_GET['id'];
         $sql = "select * from pacientes where id = $id limit 1";
@@ -51,7 +54,30 @@
         }
     ?>
 
-    <div class="container d-flex justify-content-center">
+    <div class="container modulo">
+        <div class="titulo">
+            <h5>edicion de pacientes</h5>
+        </div>       
+    </div>
+
+    <div class="container header">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="paciente">
+                            <h3>paciente: <?php echo $apellido.', '.$nombre; ?></h3>
+                        </div>
+                        <div class="volver">
+                            <h3><a href="pacientes.php" class="btn btn-light" alt="back"><img src="../../assets/icons/back.png">  volver</a></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    <div class="container d-flex justify-content-center editBox">
         <form action="pacientesCrud.php" method="post" style="width: 50vw; min-width: 300px;">
             <div id="edit-box" class="col-md-12">
                 <div class="row">
@@ -81,6 +107,11 @@
                     <div class="col">
                         <label class="form-label">fec.nacimiento</label>
                         <input type="date" class="form-control" name="fec_nac" value="<?php echo $fec_nac?>">
+                    </div>
+                    <!-- telefono -->
+                    <div class="col-md-6">
+                        <label class="form-label">telefono</label>
+                        <input type="text" class="form-control" name="telefono" value="<?php echo $telefono?>">
                     </div>
                 </div>
 
@@ -116,18 +147,13 @@
                         <label class="form-label">cobertura numero</label>
                         <input type="text" class="form-control" name="numero" value="<?php echo $numero?>">
                     </div>
-                    <!-- telefono -->
-                    <div class="col-md-6">
-                        <label class="form-label">telefono</label>
-                        <input type="text" class="form-control" name="telefono" value="<?php echo $telefono?>">
-                    </div>
-                </div>
-                <div class="row">
                     <!-- direccion -->
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label class="form-label">direccion</label>
                         <input type="text" class="form-control" name="direccion" value="<?php echo $direccion?>">
                     </div>
+                </div>
+                <div class="row">
                     <!-- profesion -->
                     <div class="col-md-12">
                         <label class="form-label">profesion</label>
@@ -135,10 +161,13 @@
                     </div>
                 </div>
                 <!-- boton submit -->
-                <div>
-                    <br>
-                    <button type="submit" class="btn btn-warning" name="submit"><img src="../../assets/icons/editar.png" />  modificar</button>
-                    <a href="pacientes.php" class="btn btn-danger"><img src="../../assets/icons/borrar.png" />  cancelar</a>
+                <div class="row botones">
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-warning" name="submit"><img src="../../assets/icons/editar.png" />  modificar</button>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="pacientes.php" class="btn btn-danger"><img src="../../assets/icons/borrar.png" />  cancelar</a>
+                    </div>
                 </div>
             </div>
         </form>

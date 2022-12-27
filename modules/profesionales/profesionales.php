@@ -23,7 +23,9 @@
 </head>
 <body>
 
-    <?php require_once('../../assets/pages/navBar.php'); ?>
+    <?php require_once('../../assets/pages/navBar.php'); 
+    $fechaHoy = date('d-m-Y');
+    ?>
 
     <!-- eventualmente ver de habilitar un boton para el abm de profesionales -->
 
@@ -54,7 +56,8 @@
                     ?>
                         <tr>
                             <td><?php echo $row['prf_id']; ?></td>
-                            <td><a href="../calendarios/calendario.php?p=<?php echo $row['prf_id'] ?>&nombre=<?php echo $row['prf_nombre'] ?>"><img src="../../assets/icons/calendario.png" alt="calendario"></a><?php echo "  ".$row['prf_nombre']; ?></td>
+                            <!-- <td><a href="../calendarios/calendario.php?p=<?php //echo $row['prf_id'] ?>&nombre=<?php //echo $row['prf_nombre'] ?>"><img src="../../assets/icons/calendario.png" alt="calendario"></a><?php //echo "  ".$row['prf_nombre']; ?></td> -->
+                            <td><a href="../calendarios/calendario.php?p=<?php echo $row['prf_id'] ?>&nombre=<?php echo $row['prf_nombre'] ?>&fecha=<?php echo $fechaHoy ?>"><img src="../../assets/icons/calendario.png" alt="calendario"></a><?php echo "  ".$row['prf_nombre']; ?></td>
                             <!-- botones -->
                             <!-- <td><a href="#"><img src="../../assets/icons/editar.png" alt="modificar"></a> editar</td> -->
                             <!-- <td><a href="#"><img src="../../assets/icons/borrar.png" alt="borrar"></a> borrar</td> -->

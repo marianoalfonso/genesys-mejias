@@ -14,14 +14,15 @@
 
     <title>borrado de pacientes</title>
 
-    <link rel="stylesheet" href="./pacientesDelete.css">
+    <!-- <link rel="stylesheet" href="./pacientesDelete.css"> -->
+    <link rel="stylesheet" href="pacientes.css">
 
 </head>
 <body>
     <!-- <nav class="navbar navbar-light justify-content-center fs-3 mb-5" style="background-color: #00FF5573";> -->
-    <nav class="navbar navbar-light justify-content-center fs-3 mb-5" style="background-color: #17a2b8";>
+    <!-- <nav class="navbar navbar-light justify-content-center fs-3 mb-5" style="background-color: #17a2b8";>
         borrar paciente
-    </nav>
+    </nav> -->
 
     <!-- obtenemos los datos del paciente a editar en base al id recibido por parametro -->
     <?php
@@ -49,6 +50,27 @@
             $profesion = $result[0]['profesion'];
         }
     ?>
+
+    <div class="container modulo">
+        <div class="titulo">
+            <h5>borrar paciente</h5>
+        </div>       
+    </div>
+
+    <div class="container header">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="paciente">
+                            <h3>paciente: <?php echo $apellido.', '.$nombre; ?></h3>
+                        </div>
+                        <div class="volver">
+                            <h3><a href="pacientes.php" class="btn btn-light" alt="back"><img src="../../assets/icons/back.png">  volver</a></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     <div class="container d-flex justify-content-center">
         <form action="pacientesCrud.php" method="post" style="width: 50vw; min-width: 300px;">

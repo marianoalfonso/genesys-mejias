@@ -39,6 +39,8 @@
   <script src="fullCalendar/main.js"></script>
   <script src="fullCalendar/locales-all.min.js"></script>
 
+  <link rel="stylesheet" href="calendario.css">
+
 </head>
 <body>
 
@@ -47,10 +49,12 @@
     <?php include "evento.php"; ?>
     <?php include "eventoInfo.php"; ?>
 
-    <?php
-        $nombre_profesional = $_GET['nombre'];
-    ?>
-    <h3>profesional: <?php echo $nombre_profesional ?></h3>
+    <div class="cabecera">
+        <?php
+            $nombre_profesional = $_GET['nombre'];
+        ?>
+        <h3><?php echo $nombre_profesional ?></h3>
+    </div>
 
     <!-- definicion del calendario -->
     <div class="container">
