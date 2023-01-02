@@ -21,17 +21,48 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- CSS personalizado --> 
-    <link rel="stylesheet" href="turnosProfesionalDelete.css">  
+    <!-- <link rel="stylesheet" href="turnosProfesionalDelete.css">   -->
+    <link rel="stylesheet" href="turnos.css">  
 
 </head>
 <body>
-    <nav class="navbar navbar-light justify-content-center fs-3 mb-5" style="background-color: #00FF5573";>
+    <!-- <nav class="navbar navbar-light justify-content-center fs-3 mb-5" style="background-color: #00FF5573";>
         gestión de turnos
-    </nav>
+    </nav> -->
+
+    <?php require_once("../../assets/pages/navBar.php"); ?>
 
     <?php
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         $_SESSION['action'] = "delete";
+    ?>
+
+    <div class="container cabecera">
+        <div class="form-group">
+            <div class="modulo">
+                <h4>borrado de turnos</h4>
+            </div>
+            <div class="error">
+                <?php
+                    if(isset($_SESSION['error'])) { ?>
+                        <h3><?php echo $_SESSION['error']; ?></h3>
+                        <?php unset($_SESSION['error']);
+                    }
+                ?>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <?php
+
+
+
+        // $_SESSION['action'] = "delete";
         $id = $_GET['id'];
         require_once("../db/dbConnection.php");
 

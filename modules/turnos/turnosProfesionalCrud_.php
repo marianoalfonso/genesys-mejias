@@ -128,6 +128,7 @@
         // borrado de paciente
         case 'delete':
             if(isset($_POST['submit'])){
+                $origenCierre = $_SESSION['origenCierreTurno'];
                 $id = $_POST['id'];
                 $fechaTurno = substr($_POST['turnoDesde'], 0, 10);
                 if($fechaTurno > date('Y-m-d')) {
@@ -145,7 +146,14 @@
                     $_SESSION['error'] = 'no puede eliminarse un turno anterior a hoy';
                 }
             }
-            header ("Location: ./turnosProfesional.php");
+            // header ("Location: ./turnosProfesional.php");
+
+            if($origenCierre == "general") {
+                header ("Location: ./turnosGeneral.php");
+            } else {
+                header ("Location: ./turnosProfesional.php");
+            }
+
         break;
 
 

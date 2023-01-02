@@ -35,6 +35,7 @@
             if (session_status() === PHP_SESSION_NONE) {
                 session_start();
             }
+            $_SESSION['origenCierreTurno'] = "profesional";
             $_SESSION['idProfesional'] = $_GET['id'];
             $_SESSION['nombreProfesional'] = $_GET['nombre'];
             $idProfesional = $_SESSION['idProfesional'];
