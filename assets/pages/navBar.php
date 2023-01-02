@@ -20,9 +20,11 @@
         $calendariosDesarrollo = "//localhost/genesys-mejias/modules/calendarios/calendarios.php";
         $salirDesarrollo = "//localhost/genesys-mejias/modules/login/loginDesbloquearProfesional.php";
 
-        $pacientesProduccion = "https://abocad.geatec.com.ar/modules/pacientes/pacientes.php";
-        $profesionalesProduccion = "https://abocad.geatec.com.ar/modules/profesionales/profesionales.php";
-        $salirProduccion = "https://abocad.geatec.com.ar/default.php";
+        $pacientesProduccion = "https://megias.geatec.com.ar/modules/pacientes/pacientes.php";
+        $profesionalesProduccion = "https://megias.geatec.com.ar/modules/profesionales/profesionales.php";
+        $turnosProduccion = "https://megias.geatec.com.ar/modules/turnos/turnosGeneral.php";
+        $calendariosProduccion = "https://megias.geatec.com.ar/modules/calendarios/calendarios.php";
+        $salirProduccion = "https://megias.geatec.com.ar/default.php";
     ?>
 
     <div class="container-fluid">

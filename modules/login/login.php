@@ -31,13 +31,13 @@
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group">
                                 <label for="dni" class="text-info">dni</label><br>
-                                <input type="number" name="dni" class="form-control" value="22925061">
-                                <!-- <input type="number" name="dni" class="form-control" value=""> -->
+                                <!-- <input type="number" name="dni" class="form-control" value="22925061"> -->
+                                <input type="number" name="dni" class="form-control" value="">
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">password</label><br>
-                                <input type="password" name="password" class="form-control" value="test1234">
-                                <!-- <input type="password" name="password" class="form-control" value=""> -->
+                                <!-- <input type="password" name="password" class="form-control" value="test1234"> -->
+                                <input type="password" name="password" class="form-control" value="">
                             </div>
                             <!-- <div class="form-group">
                                 <label for="profesional" class="text-info">seleccionar agenda de profesional</label>

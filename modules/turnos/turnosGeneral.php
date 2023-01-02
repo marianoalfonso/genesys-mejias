@@ -113,7 +113,8 @@
                                     <!-- <td><?php //echo $hasta ?></td> -->
                                     <td><?php echo $estado ?></td>
                                     <td><a href="./turnosProfesionalClose.php?idTurno=<?php echo $idTurno ?>"><img src="../../assets/icons/cerrar.png" alt="cerrar"></a></td>
-                                    <td><a href="./turnosEdit.php?id=<?php echo $idTurno ?>"><img src="../../assets/icons/editar.png" alt="modificar"></a></td>
+                                    <td><a href="#"><img src="../../assets/icons/editar.png" alt="modificar"></a></td>
+                                    <!-- <td><a href="./turnosEdit.php?id=<?php //echo $idTurno ?>"><img src="../../assets/icons/editar.png" alt="modificar"></a></td> -->
                                     <td><a href="./turnosDelete.php?id=<?php echo $idTurno ?>"><img src="../../assets/icons/borrar.png" alt="borrar"></a></td>
                                 </tr>
                             <?php }?>    

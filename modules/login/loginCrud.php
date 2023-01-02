@@ -45,7 +45,7 @@
                             // } else {
                             //     header('location: ../login/login.php');
                             // }
-                            header('location: ../../index.php');
+                            header('location: ../../default.php');
                         }
                     } else {
                         header('location: ../login/login.php');
