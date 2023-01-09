@@ -18,12 +18,14 @@
         $profesionalesDesarrollo = "//localhost/genesys-mejias/modules/profesionales/profesionales.php";
         $turnosDesarrollo = "//localhost/genesys-mejias/modules/turnos/turnosGeneral.php";
         $calendariosDesarrollo = "//localhost/genesys-mejias/modules/calendarios/calendarios.php";
+        $backupDesarrollo = "//localhost/genesys-mejias/assets/functions/backup.php";
         $salirDesarrollo = "//localhost/genesys-mejias/modules/login/login.php";
 
         $pacientesProduccion = "https://megias.geatec.com.ar/modules/pacientes/pacientes.php";
         $profesionalesProduccion = "https://megias.geatec.com.ar/modules/profesionales/profesionales.php";
         $turnosProduccion = "https://megias.geatec.com.ar/modules/turnos/turnosGeneral.php";
         $calendariosProduccion = "https://megias.geatec.com.ar/modules/calendarios/calendarios.php";
+        $backupProduccion = "https://megias.geatec.com.ar/assets/functions/backup.php";
         $salirProduccion = "https://megias.geatec.com.ar/modules/login/login.php";
     ?>
 
@@ -50,6 +52,8 @@
                         <li class="nav-item"><a class="nav-link" href="<?php echo $profesionalesDesarrollo ?>">profesionales</a></li>
                         <!-- menu turnos -->
                         <li class="nav-item"><a class="nav-link" href="<?php echo $turnosDesarrollo ?>">turnos</a></li>
+                        <!-- menu herramientas -->
+                        <li class="nav-item"><a class="nav-link" href="<?php echo $backupDesarrollo ?>">backup</a></li>
                         <!-- menu salir -->
                         <li class="nav-item"><a class="nav-link" href=<?php echo $salirDesarrollo ?>>salir</a></li>
                     </ul>
