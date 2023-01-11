@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="./fullcalendar/main.css" >
 
 
-  <!-- full calendar -->
+  <!-- full calendar (ORIGINAL)-->
   <script src="js/jquery-3.6.1.min.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -38,6 +38,11 @@
   <script src="js/moment-with-locales.min.js"></script>
   <script src="fullCalendar/main.js"></script>
   <script src="fullCalendar/locales-all.min.js"></script>
+
+  <!-- el 20210110 agrego esta referencia para ver si se soluciona el funcionamiento en consultorio megias -->
+  <!-- full calendar (referencias alternativas)-->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.0.2/index.global.min.js"></script>
+
 
   <link rel="stylesheet" href="calendario.css">
 
